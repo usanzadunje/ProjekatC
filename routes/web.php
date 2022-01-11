@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Dashboard/Index');
+Route::inertia('/', 'Dashboard/Index')->name('dashboard.index');

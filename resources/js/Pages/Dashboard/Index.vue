@@ -5,18 +5,20 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
-import { Head }            from '@inertiajs/inertia-vue3';
+import { Head, Link }      from '@inertiajs/inertia-vue3';
+import route               from 'ziggy';
 
 export default defineComponent({
   components: {
     Head,
+    Link,
   },
   setup() {
-
-
-    return {};
+    return {
+      route,
+    };
   },
 });
 </script>

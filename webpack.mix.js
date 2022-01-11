@@ -1,13 +1,23 @@
 const mix = require('laravel-mix');
 const cssImport = require('postcss-import');
 const cssNesting = require('postcss-nesting');
+const path = require('path');
 
 /**
- * Browser sync and live reload enabled.
+ * Browser sync and live reload.
  */
+
 mix.browserSync({
     proxy: "http://0.0.0.0:80",
     open: false,
+});
+
+/**
+ * Mapping ziggy vue plugin location to 'ziggy' alias
+ */
+
+mix.alias({
+    ziggy: path.resolve('vendor/tightenco/ziggy/dist'),
 });
 
 /*
