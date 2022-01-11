@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  app:
+    image: usanzadunje/laravel-dev
+    container_name: projekatc-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 3000:3000
+      - 3001:3001
+    command: npm run serve
+
+  db:
+    image: mysql:5.7
+    container_name: projekatc-db
+    restart: unless-stopped
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      SERVICE_NAME: mysql
+
+volumes:
+  mysql-data:
