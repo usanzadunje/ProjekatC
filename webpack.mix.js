@@ -15,9 +15,9 @@ mix.browserSync({
 /**
  * Mapping ziggy vue plugin location to 'ziggy' alias
  */
-
 mix.alias({
-    ziggy: path.resolve('vendor/tightenco/ziggy/dist'),
+    '@': path.resolve('./resources/js'),
+    'ziggy': path.resolve('./vendor/tightenco/ziggy/dist'),
 });
 
 /*
@@ -36,5 +36,5 @@ mix.ts('resources/js/app.ts', 'public/js')
    .postCss('resources/css/app.css', 'public/css', [
        cssImport(),
        cssNesting(),
-       require("tailwindcss"),
+       require('tailwindcss'),
    ]);
