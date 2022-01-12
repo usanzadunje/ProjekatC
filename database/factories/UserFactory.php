@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -21,7 +22,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'avatar' => $this->faker->image(storage_path('app/public/avatars'), 50, 50, null, false),
+            'avatar' => 'avatar.png',
             'remember_token' => Str::random(10),
         ];
     }
@@ -40,6 +41,19 @@ class UserFactory extends Factory
     }
 
     /**
+     * Indicate that the model's avatar should be avatar.png(default value).
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function withAvatar() {
+        return $this->state(function(array $attributes) {
+            return [
+                'avatar' => $this->faker->image(storage_path('app/public/avatars'), 50, 50, null, false),
+            ];
+        });
+    }
+
+    /**
      * Indicate that the user is admin.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
@@ -53,7 +67,6 @@ class UserFactory extends Factory
                 'email' => 'admin@admin.com',
                 'email_verified_at' => now(),
                 'password' => '$2y$10$9f1D5..uClldN95s/kzB9uOIlLhs6mmJYEW43LNv6qUrWHdwbTf92', // admin
-                'avatar' => $this->faker->image(storage_path('app/public/avatars'), 50, 50, null, false),
                 'remember_token' => Str::random(10),
             ];
         });
