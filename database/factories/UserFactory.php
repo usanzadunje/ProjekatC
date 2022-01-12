@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -12,10 +13,11 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition() {
         return [
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'username' => $this->faker->userName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -28,11 +30,29 @@ class UserFactory extends Factory
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function unverified()
-    {
-        return $this->state(function (array $attributes) {
+    public function unverified() {
+        return $this->state(function(array $attributes) {
             return [
                 'email_verified_at' => null,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the user is admin.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function admin() {
+        return $this->state(function(array $attributes) {
+            return [
+                'first_name' => 'Dusan',
+                'last_name' => 'Djordjevic',
+                'username' => 'admin',
+                'email' => 'admin@admin.com',
+                'email_verified_at' => now(),
+                'password' => '$2y$10$9f1D5..uClldN95s/kzB9uOIlLhs6mmJYEW43LNv6qUrWHdwbTf92', // admin
+                'remember_token' => Str::random(10),
             ];
         });
     }
