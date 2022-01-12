@@ -11,10 +11,11 @@ class PlaceFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition() {
         return [
-            //
+            'name' => ucwords($this->faker->word),
+            'city' => $this->faker->city(),
+            'address' => $this->faker->streetAddress(),
         ];
     }
 }

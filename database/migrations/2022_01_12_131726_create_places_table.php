@@ -11,10 +11,13 @@ class CreatePlacesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('places', function (Blueprint $table) {
+    public function up() {
+        Schema::create('places', function(Blueprint $table) {
             $table->id();
+            $table->string('name', 100);
+            $table->string('city', 100);
+            $table->string('address', 255);
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -24,8 +27,7 @@ class CreatePlacesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('places');
     }
 }
