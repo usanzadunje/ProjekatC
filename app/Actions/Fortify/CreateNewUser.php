@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -15,13 +16,30 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
-    public function create(array $input)
-    {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+    public function create(array $input) {
+        $validatedData = Validator::make($input, [
+            'first_name' => [
+                'nullable',
+                'string',
+                'alpha',
+                'max:100',
+            ],
+            'last_name' => [
+                'nullable',
+                'string',
+                'alpha',
+                'max:100',
+            ],
+            'username' => [
+                'nullable',
+                'string',
+                'min:3',
+                'max:100',
+                Rule::unique(User::class),
+            ],
             'email' => [
                 'required',
                 'string',
@@ -32,10 +50,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        return User::create($validatedData);
     }
 }

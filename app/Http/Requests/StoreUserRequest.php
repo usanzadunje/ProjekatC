@@ -42,13 +42,13 @@ class StoreUserRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:100',
-                Rule::unique(User::class)->ignore(auth()->id()),
+                Rule::unique(User::class),
             ],
             'email' => [
                 'required',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore(auth()->id()),
+                Rule::unique(User::class),
             ],
             'password' => [
                 'required',

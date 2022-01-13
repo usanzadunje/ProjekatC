@@ -8,7 +8,9 @@ const path = require('path');
  */
 
 mix.browserSync({
-    proxy: "http://0.0.0.0:80",
+    host: 'localhost',
+    proxy: "projekatc-app",
+    port: 3000,
     open: false,
 });
 
