@@ -18,10 +18,9 @@ use Illuminate\Support\Facades\Route;
 /**
  * Admin routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin'], function() {
-
-});
-Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+//Route::name('admin')->prefix('admin')->middleware()->group(function() {
+//    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+//});
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
