@@ -7,10 +7,27 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
+    command: php artisan serve --host=0.0.0.0 --port=80
+
+  queue:
+    image: usanzadunje/laravel-dev
+    container_name: projekatc-queue
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    command: php artisan queue:listen
+
+  npm:
+    image: node:16-alpine
+    container_name: projekatc-npm
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
     ports:
-      - 3000:3000
-      - 3001:3001
-    command: npm run serve
+      - "3000:3000"
+      - "3001:3001"
+    command: npm run watch
 
   db:
     image: mysql:5.7
@@ -19,7 +36,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
-      - 3310:3306
+      - "3310:3306"
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: toor

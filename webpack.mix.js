@@ -9,13 +9,13 @@ const path = require('path');
 
 mix.browserSync({
     host: 'localhost',
-    proxy: "projekatc-app",
+    proxy: 'projekatc-app',
     port: 3000,
     open: false,
 });
 
 /**
- * Mapping ziggy vue plugin location to 'ziggy' alias
+ * Mapping ziggy location to 'ziggy' alias
  */
 mix.alias({
     '@': path.resolve('./resources/js'),

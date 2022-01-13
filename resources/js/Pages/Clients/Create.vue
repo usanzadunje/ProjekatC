@@ -3,7 +3,7 @@
     <AppHead title="Add new client"/>
     <div class="p-6 min-h-screen bg-indigo-300">
       <div class="w-full max-w-md">
-        <form @submit.prevent="login">
+        <form @submit.prevent="create">
           <label for="email">Email:</label><br>
           <input type="text" id="email" name="email" v-model="form.user.email"><br>
           <label for="password">Password:</label><br>
@@ -51,7 +51,7 @@ export default defineComponent({
       },
     });
 
-    const login = () => {
+    const create = () => {
       form.post(
           route('admin.client.store'),
       );
@@ -60,7 +60,7 @@ export default defineComponent({
 
     return {
       form,
-      login,
+      create,
       route,
     };
   },

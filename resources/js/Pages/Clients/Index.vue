@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { Link, useForm }             from '@inertiajs/inertia-vue3';
+import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 
 import AppHead  from '@/Shared/AppHead.vue';
@@ -57,28 +57,7 @@ export default defineComponent({
   },
   setup() {
 
-    const form = useForm({
-      user: {
-        email: null,
-        password: null,
-      },
-      place: {
-        name: null,
-        city: null,
-        address: null,
-      },
-    });
-
-    const login = () => {
-      form.post(
-          route('admin.client.store'),
-      );
-    };
-
-
     return {
-      form,
-      login,
       route,
     };
   },

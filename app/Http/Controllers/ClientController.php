@@ -7,6 +7,7 @@ use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
@@ -45,16 +46,16 @@ class ClientController extends Controller
      *
      * @param StoreClientRequest $request
      * @param CreateUserAction $createUserAction
-     * @return InertiaResponse
+     * @return RedirectResponse
      */
-    public function store(StoreClientRequest $request, CreateUserAction $createUserAction): InertiaResponse {
+    public function store(StoreClientRequest $request, CreateUserAction $createUserAction): RedirectResponse {
         $validatedUserData = $request->validated()['user'];
         $validatedPlaceData = $request->validated()['place'];
 
         $user = $createUserAction->handle($validatedUserData);
         $user->place()->create($validatedPlaceData);
 
-        return Inertia::render('Dashboard/Admin');
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -92,11 +93,11 @@ class ClientController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $client
-     * @return InertiaResponse
+     * @return RedirectResponse
      */
-    public function destroy(User $client): InertiaResponse {
+    public function destroy(User $client): RedirectResponse {
         $client->delete();
 
-        return Inertia::render('Dashboard/Admin');
+        return redirect()->route('admin.client.index');
     }
 }

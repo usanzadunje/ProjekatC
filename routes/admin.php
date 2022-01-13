@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::inertia('/', 'Dashboard/Admin')->name('dashboard');
+Route::get('/test', function() {
+    dd('works');
+})->name('test');
 
 Route::get('/clients', [ClientController::class, 'index'])->name('client.index');
 Route::get('/clients/create', [ClientController::class, 'create'])->name('client.create');

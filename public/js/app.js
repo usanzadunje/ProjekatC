@@ -19378,13 +19378,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     });
 
-    var login = function login() {
+    var create = function create() {
       form.post(ziggy__WEBPACK_IMPORTED_MODULE_2___default()('admin.client.store'));
     };
 
     return {
       form: form,
-      login: login,
+      create: create,
       route: (ziggy__WEBPACK_IMPORTED_MODULE_2___default())
     };
   }
@@ -19427,25 +19427,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   setup: function setup() {
-    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-      user: {
-        email: null,
-        password: null
-      },
-      place: {
-        name: null,
-        city: null,
-        address: null
-      }
-    });
-
-    var login = function login() {
-      form.post(ziggy__WEBPACK_IMPORTED_MODULE_2___default()('admin.client.store'));
-    };
-
     return {
-      form: form,
-      login: login,
       route: (ziggy__WEBPACK_IMPORTED_MODULE_2___default())
     };
   }
@@ -19983,7 +19965,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Add new client"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return _ctx.login && _ctx.login.apply(_ctx, arguments);
+      return _ctx.create && _ctx.create.apply(_ctx, arguments);
     }, ["prevent"]))
   }, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
