@@ -25,10 +25,7 @@ class FortifyServiceProvider extends ServiceProvider
      * @return void
      */
     public function register() {
-        $this->app->instance(
-            \Laravel\Fortify\Contracts\LogoutResponse::class,
-            \App\Http\Responses\LogoutResponse::class
-        );
+        //
     }
 
     /**
