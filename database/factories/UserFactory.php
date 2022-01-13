@@ -68,6 +68,7 @@ class UserFactory extends Factory
                 'email_verified_at' => now(),
                 'password' => '$2y$10$9f1D5..uClldN95s/kzB9uOIlLhs6mmJYEW43LNv6qUrWHdwbTf92', // admin
                 'remember_token' => Str::random(10),
+                'role_id' => 1,
             ];
         });
     }
