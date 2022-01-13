@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Place;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
-class StoreUserRequest extends FormRequest
+class StoreClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,36 +26,34 @@ class StoreUserRequest extends FormRequest
      */
     public function rules() {
         return [
-            'first_name' => [
-                'nullable',
-                'string',
-                'alpha',
-                'max:100',
-            ],
-            'last_name' => [
-                'nullable',
-                'string',
-                'alpha',
-                'max:100',
-            ],
-            'username' => [
-                'nullable',
-                'string',
-                'min:3',
-                'max:100',
-                Rule::unique(User::class),
-            ],
-            'email' => [
+            'user.email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
-                Rule::unique(User::class),
+                Rule::unique(User::class, 'email'),
             ],
-            'password' => [
+            'user.password' => [
                 'required',
                 'string',
                 Password::min(3),
+            ],
+            'place.name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique(Place::class, 'name'),
+            ],
+            'place.city' => [
+                'required',
+                'string',
+                'alpha',
+                'max:100',
+            ],
+            'place.address' => [
+                'required',
+                'string',
+                'max:150',
             ],
         ];
     }

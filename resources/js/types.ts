@@ -1,3 +1,26 @@
+export interface Place {
+    /**
+     * Place ID
+     */
+    id: number;
+    /**
+     * Place name
+     */
+    name: string;
+    /**
+     * Place city
+     */
+    city: string;
+    /**
+     * Place address
+     */
+    address: string;
+    /**
+     * ID of the user this place belongs to (owner of the place)
+     */
+    user_id?: number;
+}
+
 export interface User {
     /**
      * Users ID
@@ -19,4 +42,8 @@ export interface User {
      * Users e-mail address
      */
     email?: string;
+    /**
+     * Place which is owner by user
+     */
+    place?: Place;
 }

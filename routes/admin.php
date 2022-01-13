@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,4 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Dashboard/Admin')->name('dashboard');
 
-//Route::post('/', [AdminController::class, 'store'])->name('store');
+Route::get('/clients', [ClientController::class, 'index'])->name('client.index');
+Route::get('/clients/create', [ClientController::class, 'create'])->name('client.create');
+Route::post('/clients', [ClientController::class, 'store'])->name('client.store');
+

@@ -2,6 +2,12 @@
   <div>
     <AppHead title="Dashboard"/>
     <h1 class="text-3xl text-red-500">ADMIN DASHBOARD</h1>
+    <Link :href="route('admin.client.index')" as="button" type="button" class="mt-2 border border-black">
+      All Clients
+    </Link>
+    <Link :href="route('admin.client.create')" as="button" type="button" class="mt-2 border border-black">
+      Create Client
+    </Link>
     <Link :href="route('logout')" method="post" as="button" type="button" class="mt-2 border border-black">Logout</Link>
   </div>
 </template>
