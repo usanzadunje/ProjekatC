@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,6 +8,4 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::inertia('/', 'Dashboard/Admin')->name('dashboard');
-
-//Route::post('/', [AdminController::class, 'store'])->name('store');
+Route::inertia('/', 'Dashboard/Staff')->name('dashboard');

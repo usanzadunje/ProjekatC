@@ -11,9 +11,9 @@ class HomeController extends Controller
         $userRole = $request->user()->role;
 
         return match ($userRole) {
-            Role::ADMIN => redirect()->route('dashboard.admin'),
-            Role::STAFF => redirect()->route('dashboard.staff'),
-            Role::USER => redirect()->route('dashboard.user'),
+            Role::ADMIN => redirect()->route('admin.dashboard'),
+            Role::STAFF => redirect()->route('staff.dashboard'),
+            Role::USER => redirect()->route('user.dashboard'),
             default => redirect()->route('welcome'),
         };
     }

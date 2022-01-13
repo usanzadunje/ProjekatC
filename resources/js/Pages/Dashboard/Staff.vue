@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppHead title="Dashboard"/>
-    <h1 class="text-3xl text-red-500">ADMIN DASHBOARD</h1>
+    <h1 class="text-3xl text-red-500">STAFF DASHBOARD</h1>
     <Link :href="route('logout')" method="post" as="button" type="button" class="mt-2 border border-black">Logout</Link>
   </div>
 </template>
@@ -15,7 +15,7 @@ import AppHead from '@/Shared/AppHead.vue';
 import Layout  from '@/Shared/Layout.vue';
 
 export default defineComponent({
-  name: 'Dashboard/Admin',
+  name: 'Dashboard/Staff',
   components: {
     AppHead,
     Link,

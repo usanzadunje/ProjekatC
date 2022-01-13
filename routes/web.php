@@ -1,17 +1,23 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Web Routes
 |--------------------------------------------------------------------------
 */
 
-Route::inertia('/', 'Dashboard/Admin')->name('dashboard');
+Route::get('/ttt', function(){
+    dd(redirect()->route('login'));
+});
 
-//Route::post('/', [AdminController::class, 'store'])->name('store');
+Route::inertia('/test', 'Welcome')->name('welcome');
+Route::get('/home', HomeController::class)
+    ->middleware('auth')
+    ->name('home');
+
 
 
 
