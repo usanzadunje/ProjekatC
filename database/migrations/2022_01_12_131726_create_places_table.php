@@ -17,7 +17,7 @@ class CreatePlacesTable extends Migration
             $table->string('name', 100);
             $table->string('city', 100);
             $table->string('address', 255);
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

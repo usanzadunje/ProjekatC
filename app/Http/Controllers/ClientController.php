@@ -91,10 +91,12 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
-     * @return \Illuminate\Http\Response
+     * @param User $client
+     * @return InertiaResponse
      */
-    public function destroy(User $user) {
-        //
+    public function destroy(User $client): InertiaResponse {
+        $client->delete();
+
+        return Inertia::render('Dashboard/Admin');
     }
 }

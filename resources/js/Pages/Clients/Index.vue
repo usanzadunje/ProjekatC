@@ -8,12 +8,24 @@
           <tr>
             <th>Email</th>
             <th>Place:</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="client in clients" :key="client.id">
             <td class="px-4">{{ client.email }}</td>
             <td class="px-4">{{ client.place.name }}</td>
+            <td class="px-4">
+              <Link
+                  :href="route('admin.client.destroy', client.id)"
+                  method="delete"
+                  as="button"
+                  type="button"
+                  class="text-red-500 font-bold"
+              >
+                X
+              </Link>
+            </td>
           </tr>
           </tbody>
         </table>
