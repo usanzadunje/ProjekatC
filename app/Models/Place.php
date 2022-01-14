@@ -27,6 +27,11 @@ class Place extends Model
     }
 
     public function reservees(): BelongsToMany {
-        return $this->belongsToMany(User::class, 'reservations');
+        return $this
+            ->belongsToMany(User::class, 'reservations')
+            ->using(Reservation::class)
+            ->as('reservation')
+            ->withPivot('date')
+            ->withTimestamps();
     }
 }

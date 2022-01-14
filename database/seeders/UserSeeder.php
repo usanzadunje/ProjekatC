@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         User::factory(5)->withAvatar()->create();
     }
 
-    private function createCustomAdmin(){
+    private function createCustomAdmin() {
         User::create([
             'first_name' => 'Dusan',
             'last_name' => 'Djordjevic',
