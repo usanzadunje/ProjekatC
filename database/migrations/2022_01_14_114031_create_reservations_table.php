@@ -11,10 +11,12 @@ class CreateReservationsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('reservations', function (Blueprint $table) {
+    public function up() {
+        Schema::create('reservations', function(Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('place_id')->constrained()->cascadeOnDelete();
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -24,8 +26,7 @@ class CreateReservationsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('reservations');
     }
 }

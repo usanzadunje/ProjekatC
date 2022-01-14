@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,5 +49,9 @@ class User extends Authenticatable
 
     public function place(): HasOne {
         return $this->hasOne(Place::class);
+    }
+
+    public function reservations(): BelongsToMany {
+        return $this->belongsToMany(Place::class, 'reservations');
     }
 }
