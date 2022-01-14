@@ -12,5 +12,5 @@ class Role extends Model
 
     const STAFF = 2;
 
-    const USER = 3;
+    const REGULAR = 3;
 }

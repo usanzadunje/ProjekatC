@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::inertia('/', 'Dashboard/User')->name('dashboard');
+Route::inertia('/', 'Dashboard/Regular')->name('dashboard');

@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -18,12 +17,12 @@ class UserFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'username' => $this->faker->userName(),
+            'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'avatar' => 'avatar.png',
             'remember_token' => Str::random(10),
+            'role_id' => Role::REGULAR,
         ];
     }
 
@@ -61,14 +60,20 @@ class UserFactory extends Factory
     public function admin() {
         return $this->state(function(array $attributes) {
             return [
-                'first_name' => 'Dusan',
-                'last_name' => 'Djordjevic',
-                'username' => 'admin',
-                'email' => 'admin@admin.com',
-                'email_verified_at' => now(),
-                'password' => '$2y$10$9f1D5..uClldN95s/kzB9uOIlLhs6mmJYEW43LNv6qUrWHdwbTf92', // admin
-                'remember_token' => Str::random(10),
-                'role_id' => 1,
+                'role_id' => Role::ADMIN,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the user is staff.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function staff() {
+        return $this->state(function(array $attributes) {
+            return [
+                'role_id' => Role::STAFF,
             ];
         });
     }

@@ -13,7 +13,7 @@ class HomeController extends Controller
         return match ($userRole) {
             Role::ADMIN => redirect()->route('admin.dashboard'),
             Role::STAFF => redirect()->route('staff.dashboard'),
-            Role::USER => redirect()->route('user.dashboard'),
+            Role::REGULAR => redirect()->route('regular.dashboard'),
             default => redirect()->route('welcome'),
         };
     }

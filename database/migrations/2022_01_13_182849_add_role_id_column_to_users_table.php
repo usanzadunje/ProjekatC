@@ -14,7 +14,7 @@ class AddRoleIdColumnToUsersTable extends Migration
      */
     public function up() {
         Schema::table('users', function(Blueprint $table) {
-            $table->foreignId('role_id')->nullable()->default(Role::USER)->constrained()->nullOnDelete();
+            $table->foreignId('role_id')->default(Role::REGULAR)->constrained();
         });
     }
 

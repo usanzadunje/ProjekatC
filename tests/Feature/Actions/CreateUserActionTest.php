@@ -3,13 +3,12 @@
 namespace Tests\Feature\Actions;
 
 use App\Actions\User\CreateUserAction;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CreateUserActionTest extends TestCase
 {
-    use WithFaker, DatabaseTransactions;
+    use WithFaker;
 
     public function setUp(): void {
         parent::setUp();

@@ -2,11 +2,9 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 abstract class FormRequestTestCase extends TestCase
 {
-    use DatabaseTransactions;
 
     public function setUp(): void {
         parent::setUp();

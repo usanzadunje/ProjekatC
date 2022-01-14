@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Actions\User\CreateUserAction;
 use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
