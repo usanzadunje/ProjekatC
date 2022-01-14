@@ -2,6 +2,12 @@
   <div>
     <AppHead title="Dashboard"/>
     <h1 class="text-3xl text-red-500">STAFF DASHBOARD</h1>
+    <Link :href="route('staff.reservation.index')" as="button" type="button" class="mt-2 border border-black">
+      All Reservations
+    </Link>
+    <Link :href="route('staff.reservation.create')" as="button" type="button" class="mt-2 border border-black">
+      Create Reservation
+    </Link>
     <Link :href="route('logout')" method="post" as="button" type="button" class="mt-2 border border-black">Logout</Link>
   </div>
 </template>

@@ -54,7 +54,7 @@ class ClientController extends Controller
         $user = $createUserAction->handle($validatedUserData);
         $user->place()->create($validatedPlaceData);
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.client.index');
     }
 
     /**

@@ -25,7 +25,7 @@ export interface User {
     /**
      * Users ID
      */
-    id: number;
+    id?: number;
     /**
      * Users first name
      */
