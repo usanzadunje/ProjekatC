@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\StaffReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,4 +11,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Dashboard/Staff')->name('dashboard');
 
-Route::resource('reservation', ReservationController::class);
+Route::resource('reservation', StaffReservationController::class);

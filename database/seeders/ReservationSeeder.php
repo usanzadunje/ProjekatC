@@ -24,7 +24,7 @@ class ReservationSeeder extends Seeder
                 ->reservations()
                 ->attach(
                     $places->random(),
-                    ['approved_at' => Carbon::now()->addHours(rand(1, 1000))],
+                    ['reservation_date' => Carbon::now()->addHours(rand(1, 1000))],
                 );
         });
     }

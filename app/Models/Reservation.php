@@ -7,6 +7,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
+/**
+ * App\Models\Reservation
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $place_id
+ * @property \Illuminate\Support\Carbon|null $reservation_date
+ * @property \Illuminate\Support\Carbon|null $approved_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Place $place
+ * @property-read \App\Models\User $reservee
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation exclude(array|string $excludedColumns)
+ * @method static \Database\Factories\ReservationFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereApprovedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation wherePlaceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereReservationDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Reservation extends Pivot
 {
     use HasFactory, Excludable;
@@ -31,6 +57,7 @@ class Reservation extends Pivot
      * @var array<string, string>
      */
     protected $casts = [
+        'reservation_date' => 'datetime',
         'approved_at' => 'datetime',
     ];
 
