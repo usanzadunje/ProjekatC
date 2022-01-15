@@ -2,85 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Reservation\CreateNewReservationAction;
+use App\Actions\Reservation\GetReservationsAction;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class StaffReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function index(GetReservationsAction $getReservationsAction): InertiaResponse {
+        $reservations = $getReservationsAction->handle(auth()->user());
+
+
+        return Inertia::render('Reservations/Staff/Index', compact('reservations'));
+    }
+
+    public function create(): InertiaResponse {
+        return Inertia::render('Reservations/Staff/Create');
+    }
+
+    public function store(StoreReservationRequest $request, CreateNewReservationAction $createNewReservationAction): InertiaResponse {
+        $createNewReservationAction->handle(auth()->user(), $request->validated());
+
+        return Inertia::render('Reservations/Staff/Index');
+    }
+
+    public function show(Reservation $reservation) {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function edit(Reservation $reservation) {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreReservationRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreReservationRequest $request)
-    {
+    public function update(UpdateReservationRequest $request, Reservation $reservation) {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateReservationRequest  $request
-     * @param  \App\Models\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateReservationRequest $request, Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Reservation $reservation)
-    {
+    public function destroy(Reservation $reservation) {
         //
     }
 }

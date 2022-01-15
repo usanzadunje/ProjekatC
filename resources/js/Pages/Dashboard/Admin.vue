@@ -2,6 +2,7 @@
   <div>
     <AppHead title="Dashboard"/>
     <h1 class="text-3xl text-red-500">ADMIN DASHBOARD</h1>
+    <h1 class="text-3xl text-red-500">User: {{ $page.props.auth.user.id }} | {{ $page.props.auth.user.username }}</h1>
     <Link :href="route('admin.client.index')" as="button" type="button" class="mt-2 border border-black">
       All Clients
     </Link>

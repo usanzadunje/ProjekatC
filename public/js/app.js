@@ -19496,7 +19496,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
-  name: 'Dashboard/User',
+  name: 'Dashboard/Regular',
   components: {
     AppHead: _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
@@ -20241,11 +20241,15 @@ var _hoisted_1 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-3xl text-red-500"
 }, "ADMIN DASHBOARD", -1);
 
-var _hoisted_2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All Clients ");
+var _hoisted_2 = {
+  "class": "text-3xl text-red-500"
+};
 
-var _hoisted_3 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Client ");
+var _hoisted_3 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All Clients ");
 
-var _hoisted_4 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
+var _hoisted_4 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Client ");
+
+var _hoisted_5 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AppHead = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AppHead");
@@ -20254,14 +20258,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppHead, {
     title: "Dashboard"
-  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, "User: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.id) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.username), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('admin.client.index'),
     as: "button",
     type: "button",
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
+      return [_hoisted_3];
     }),
     _: 1
   }, 8, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -20271,7 +20275,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_3];
+      return [_hoisted_4];
     }),
     _: 1
   }, 8, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -20282,7 +20286,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_4];
+      return [_hoisted_5];
     }),
     _: 1
   }, 8, ["href"])]);
@@ -20308,11 +20312,15 @@ var _hoisted_1 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-3xl text-red-500"
 }, "USER DASHBOARD", -1);
 
-var _hoisted_2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All Reservations ");
+var _hoisted_2 = {
+  "class": "text-3xl text-red-500"
+};
 
-var _hoisted_3 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Reservation ");
+var _hoisted_3 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All Reservations ");
 
-var _hoisted_4 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
+var _hoisted_4 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Reservation ");
+
+var _hoisted_5 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AppHead = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AppHead");
@@ -20321,14 +20329,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppHead, {
     title: "Dashboard"
-  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, "User: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.id) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.username), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('regular.reservation.index'),
     as: "button",
     type: "button",
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
+      return [_hoisted_3];
     }),
     _: 1
   }, 8, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -20338,7 +20346,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_3];
+      return [_hoisted_4];
     }),
     _: 1
   }, 8, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -20349,7 +20357,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_4];
+      return [_hoisted_5];
     }),
     _: 1
   }, 8, ["href"])]);
@@ -20375,11 +20383,15 @@ var _hoisted_1 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-3xl text-red-500"
 }, "STAFF DASHBOARD", -1);
 
-var _hoisted_2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All Reservations ");
+var _hoisted_2 = {
+  "class": "text-3xl text-red-500"
+};
 
-var _hoisted_3 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Reservation ");
+var _hoisted_3 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All Reservations ");
 
-var _hoisted_4 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
+var _hoisted_4 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Reservation ");
+
+var _hoisted_5 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AppHead = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AppHead");
@@ -20388,14 +20400,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppHead, {
     title: "Dashboard"
-  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_2, "User: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.id) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.username), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('staff.reservation.index'),
     as: "button",
     type: "button",
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
+      return [_hoisted_3];
     }),
     _: 1
   }, 8, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -20405,7 +20417,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_3];
+      return [_hoisted_4];
     }),
     _: 1
   }, 8, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -20416,7 +20428,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2 border border-black"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_4];
+      return [_hoisted_5];
     }),
     _: 1
   }, 8, ["href"])]);
