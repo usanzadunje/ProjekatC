@@ -67,7 +67,7 @@ class ReservationPolicy
      */
     public function delete(User $user, Reservation $reservation): bool {
         $isAuthUserReservation = $user->id === $reservation->user_id;
-        $isReservationBelongingToStaffPlace = $user->place()->value('id') === $reservation->user_id;
+        $isReservationBelongingToStaffPlace = $user->place()->value('id') === $reservation->place_id;
 
         return $isAuthUserReservation || $isReservationBelongingToStaffPlace;
     }

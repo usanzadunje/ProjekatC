@@ -58,6 +58,10 @@ export interface Reservation {
      */
     id?: number;
     /**
+     * Date on which reservation should be made
+     */
+    reservation_date: string;
+    /**
      * Date when user asked for reservation
      */
     created_at: string;

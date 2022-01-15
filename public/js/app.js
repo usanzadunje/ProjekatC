@@ -19602,24 +19602,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Shared/AppHead.vue */ "./resources/js/Shared/AppHead.vue");
-/* harmony import */ var _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Shared/Layout.vue */ "./resources/js/Shared/Layout.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ziggy */ "./vendor/tightenco/ziggy/dist/index.js");
+/* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ziggy__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/AppHead.vue */ "./resources/js/Shared/AppHead.vue");
+/* harmony import */ var _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/Layout.vue */ "./resources/js/Shared/Layout.vue");
+
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Reservations/Regular/Index',
   components: {
-    AppHead: _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AppHead: _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
   },
-  layout: _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  layout: _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   props: {
     reservations: {
       type: Object
     }
   },
   setup: function setup() {
-    return {};
+    return {
+      route: (ziggy__WEBPACK_IMPORTED_MODULE_2___default())
+    };
   }
 }));
 
@@ -19678,24 +19686,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Shared/AppHead.vue */ "./resources/js/Shared/AppHead.vue");
-/* harmony import */ var _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Shared/Layout.vue */ "./resources/js/Shared/Layout.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ziggy */ "./vendor/tightenco/ziggy/dist/index.js");
+/* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ziggy__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/AppHead.vue */ "./resources/js/Shared/AppHead.vue");
+/* harmony import */ var _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/Layout.vue */ "./resources/js/Shared/Layout.vue");
+
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Reservations/Staff/Index',
   components: {
-    AppHead: _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AppHead: _Shared_AppHead_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
   },
-  layout: _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  layout: _Shared_Layout_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   props: {
     reservations: {
       type: Object
     }
   },
   setup: function setup() {
-    return {};
+    return {
+      route: (ziggy__WEBPACK_IMPORTED_MODULE_2___default())
+    };
   }
 }));
 
@@ -20173,10 +20189,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "p-6 min-h-screen bg-indigo-300"
+  "class": "p-6 bg-indigo-300"
 };
 var _hoisted_2 = {
-  "class": "w-full max-w-md"
+  "class": "w-full"
 };
 var _hoisted_3 = {
   "class": "table-auto"
@@ -20503,12 +20519,62 @@ var _hoisted_1 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-3xl text-red-500"
 }, "Reservations Index", -1);
 
+var _hoisted_2 = {
+  "class": "p-6 bg-indigo-300"
+};
+var _hoisted_3 = {
+  "class": "w-full"
+};
+var _hoisted_4 = {
+  "class": "table-auto"
+};
+
+var _hoisted_5 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Name:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Address:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Reservation Date:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Approved Date:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Submition Date:")])], -1);
+
+var _hoisted_6 = {
+  "class": "px-4"
+};
+var _hoisted_7 = {
+  "class": "px-4"
+};
+var _hoisted_8 = {
+  "class": "px-4"
+};
+var _hoisted_9 = {
+  "class": "px-4"
+};
+var _hoisted_10 = {
+  "class": "px-4"
+};
+var _hoisted_11 = {
+  "class": "px-4"
+};
+
+var _hoisted_12 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" X ");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AppHead = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AppHead");
 
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppHead, {
     title: "Users"
-  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.reservations), 1)]);
+  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.reservations, function (reservation) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+      key: reservation.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)("".concat(reservation.place.name)), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.place.address), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.reservation_date), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.approved_at), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.created_at), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+      href: _ctx.route('regular.reservation.destroy', reservation.id),
+      method: "delete",
+      as: "button",
+      type: "button",
+      "class": "text-red-500 font-bold"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_12];
+      }),
+      _: 2
+    }, 1032, ["href"])])]);
+  }), 128))])])])])]);
 }
 
 /***/ }),
@@ -20580,12 +20646,62 @@ var _hoisted_1 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-3xl text-red-500"
 }, "Reservations Index", -1);
 
+var _hoisted_2 = {
+  "class": "p-6 bg-indigo-300"
+};
+var _hoisted_3 = {
+  "class": "w-full"
+};
+var _hoisted_4 = {
+  "class": "table-auto"
+};
+
+var _hoisted_5 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Name:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Email:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Reservation Date:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Approved Date:"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Submition Date:")])], -1);
+
+var _hoisted_6 = {
+  "class": "px-4"
+};
+var _hoisted_7 = {
+  "class": "px-4"
+};
+var _hoisted_8 = {
+  "class": "px-4"
+};
+var _hoisted_9 = {
+  "class": "px-4"
+};
+var _hoisted_10 = {
+  "class": "px-4"
+};
+var _hoisted_11 = {
+  "class": "px-4"
+};
+
+var _hoisted_12 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" X ");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AppHead = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AppHead");
 
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AppHead, {
     title: "Users"
-  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.reservations), 1)]);
+  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.reservations, function (reservation) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+      key: reservation.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)("".concat(reservation.reservee.first_name, " ").concat(reservation.reservee.last_name)), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.reservee.email), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.reservation_date), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.approved_at), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reservation.created_at), 1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+      href: _ctx.route('staff.reservation.destroy', reservation.id),
+      method: "delete",
+      as: "button",
+      type: "button",
+      "class": "text-red-500 font-bold"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_12];
+      }),
+      _: 2
+    }, 1032, ["href"])])]);
+  }), 128))])])])])]);
 }
 
 /***/ }),

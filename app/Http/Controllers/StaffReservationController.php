@@ -46,7 +46,9 @@ class StaffReservationController extends Controller
         //
     }
 
-    public function destroy(Reservation $reservation) {
-        //
+    public function destroy(Reservation $reservation): RedirectResponse {
+        $reservation->delete();
+
+        return redirect()->route('staff.reservation.index');
     }
 }

@@ -1,8 +1,8 @@
 <template>
   <div>
     <AppHead title="Add new client"/>
-    <div class="p-6 min-h-screen bg-indigo-300">
-      <div class="w-full max-w-md">
+    <div class="p-6 bg-indigo-300">
+      <div class="w-full">
         <table class="table-auto">
           <thead>
           <tr>
