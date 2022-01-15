@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Excludable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Reservation extends Pivot
 {
-    use HasFactory;
+    use HasFactory, Excludable;
 
     /**
      * Indicates which table is being used for model.
@@ -31,16 +31,28 @@ class Reservation extends Pivot
      * @var array<string, string>
      */
     protected $casts = [
-        'date' => 'date',
+        'approved_at' => 'datetime',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'user_id',
+        'place_id',
+        'updated_at',
     ];
 
     public function reservee(): BelongsTo {
         return $this
             ->belongsTo(User::class, 'user_id', 'id', 'users')
-            ->select('first_name', 'last_name', 'email');
+            ->select('id', 'first_name', 'last_name', 'email');
     }
 
     public function place(): BelongsTo {
-        return $this->belongsTo(Place::class);
+        return $this->belongsTo(Place::class)
+            ->select('id', 'name', 'address');
     }
 }

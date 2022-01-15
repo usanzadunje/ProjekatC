@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('place_id')->constrained()->cascadeOnDelete();
-            $table->date('date');
+            $table->dateTime('approved_at')->nullable();
             $table->timestamps();
         });
     }

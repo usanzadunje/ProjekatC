@@ -14,17 +14,17 @@ import { defineComponent, PropType } from 'vue';
 import AppHead                       from '@/Shared/AppHead.vue';
 import Layout                        from '@/Shared/Layout.vue';
 
-import { User } from '@/types';
+import { Reservation } from '@/types';
 
 export default defineComponent({
-  name: 'User/Index',
+  name: 'Reservations/Regular/Index',
   components: {
     AppHead,
   },
   layout: Layout,
   props: {
     reservations: {
-      type: Object as PropType<User[]>,
+      type: Object as PropType<Reservation[]>,
     },
   },
   setup() {

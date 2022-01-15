@@ -13,7 +13,7 @@ class ReservationFactory extends Factory
      */
     public function definition() {
         return [
-            'date' => $this->faker->dateTimeBetween('-30 days'),
+            'approved_at' => $this->faker->dateTimeBetween('-30 days'),
         ];
     }
 }

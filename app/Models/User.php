@@ -54,9 +54,9 @@ class User extends Authenticatable
     public function reservations(): BelongsToMany {
         return $this
             ->belongsToMany(Place::class, 'reservations')
+            ->select('places.id', 'name', 'address')
             ->using(Reservation::class)
             ->as('reservation')
-            ->withPivot('date')
-            ->withTimestamps();
+            ->withPivot('id', 'approved_at', 'created_at');
     }
 }

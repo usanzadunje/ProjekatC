@@ -1,8 +1,39 @@
+export interface User {
+    /**
+     * User ID
+     */
+    id?: number;
+    /**
+     * User first name
+     */
+    first_name: string;
+    /**
+     * User last name
+     */
+    last_name: string;
+    /**
+     * User username
+     */
+    username: string;
+    /**
+     * User e-mail address
+     */
+    email?: string;
+    /**
+     * User avatar image name.
+     */
+    avatar?: string;
+    /**
+     * User role
+     */
+    role?: Role;
+}
+
 export interface Place {
     /**
      * Place ID
      */
-    id: number;
+    id?: number;
     /**
      * Place name
      */
@@ -21,29 +52,40 @@ export interface Place {
     user_id?: number;
 }
 
-export interface User {
+export interface Reservation {
     /**
-     * Users ID
+     * Reservation ID
      */
     id?: number;
     /**
-     * Users first name
+     * Date when user asked for reservation
      */
-    first_name: string;
+    created_at: string;
     /**
-     * Users last name
+     * Date when reservation was approved by place staff
      */
-    last_name: string;
+    approved_at: string;
     /**
-     * Users username
+     * User which asked for reservation
      */
-    username: string;
+    reservee?: User;
     /**
-     * Users e-mail address
-     */
-    email?: string;
-    /**
-     * Place which is owner by user
+     * Place on which reservation was asked for
      */
     place?: Place;
+}
+
+declare enum Role {
+    /**
+     * Indicates admin role
+     */
+    ADMIN = 1,
+    /**
+     * Indicates staff role
+     */
+    STAFF,
+    /**
+     * Indicates regular user role
+     */
+    REGULAR,
 }

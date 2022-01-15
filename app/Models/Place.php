@@ -29,9 +29,9 @@ class Place extends Model
     public function reservees(): BelongsToMany {
         return $this
             ->belongsToMany(User::class, 'reservations')
+            ->select('users.id', 'first_name', 'last_name', 'email')
             ->using(Reservation::class)
             ->as('reservation')
-            ->withPivot('date')
-            ->withTimestamps();
+            ->withPivot('id', 'approved_at', 'created_at');
     }
 }
