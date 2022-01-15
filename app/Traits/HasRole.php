@@ -19,8 +19,7 @@ trait HasRole
     }
 
     /**
-     * Checks if resource has certain role. Best used with Role model constants
-     * e.g. Role::ADMIN
+     * Checks if resource has certain role.
      *
      * @param int|string $role
      * @return bool
@@ -31,6 +30,26 @@ trait HasRole
         }
 
         return $this->role === (int)$role;
+    }
+
+    /**
+     * Checks if resource has any of the provided roles.
+     *
+     * @param array $roles
+     * @return bool
+     */
+    public function hasAnyRole(array $roles): bool {
+        foreach($roles as $role){
+            $role = is_string($role) ? Role::getRoleIdFromName($role) : $role;
+
+            if($this->role !== (int)$role) {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

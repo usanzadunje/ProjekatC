@@ -13,6 +13,10 @@ use Inertia\Response as InertiaResponse;
 
 class RegularReservationController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Reservation::class, 'reservation');
+    }
+
     public function index(GetReservationsAction $getReservationsAction): InertiaResponse {
         $reservations = $getReservationsAction->handle(auth()->user());
 
