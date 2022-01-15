@@ -20549,6 +20549,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "button",
     "class": "mt-2 border border-black",
     data: {
+      user_id: 10,
       reservation_date: _ctx.todayISO()
     }
   }, {

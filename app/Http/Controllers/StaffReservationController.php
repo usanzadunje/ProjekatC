@@ -7,6 +7,7 @@ use App\Actions\Reservation\GetReservationsAction;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
@@ -27,10 +28,10 @@ class StaffReservationController extends Controller
         return Inertia::render('Reservations/Staff/Create');
     }
 
-    public function store(StoreReservationRequest $request, CreateNewReservationAction $createNewReservationAction): InertiaResponse {
+    public function store(StoreReservationRequest $request, CreateNewReservationAction $createNewReservationAction): RedirectResponse {
         $createNewReservationAction->handle(auth()->user(), $request->validated());
 
-        return Inertia::render('Reservations/Staff/Index');
+        return redirect()->route('staff.reservation.index');
     }
 
     public function show(Reservation $reservation) {

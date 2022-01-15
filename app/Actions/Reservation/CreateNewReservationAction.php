@@ -14,7 +14,7 @@ class CreateNewReservationAction
         if($user->hasRole('regular')) {
             $user->reservations()->attach($reservationData['place_id'], $reservationData);
         }else {
-            $user->place()->reservees()->attach($reservationData['user_id'], $reservationData);
+            $user->place->reservees()->attach($reservationData['user_id'], $reservationData);
         }
     }
 

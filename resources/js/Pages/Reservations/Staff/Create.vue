@@ -9,7 +9,7 @@
             as="button"
             type="button"
             class="mt-2 border border-black"
-            :data="{reservation_date: todayISO()}"
+            :data="{user_id: 10, reservation_date: todayISO()}"
         >
           Reserve
         </Link>
