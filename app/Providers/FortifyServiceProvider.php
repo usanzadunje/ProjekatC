@@ -35,17 +35,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot() {
         Fortify::loginView(fn() => Inertia::render('Auth/Login'));
-        Fortify::authenticateUsing(function(LoginRequest $request) {
-            $user = User::where('email', $request->username)
-                ->orWhere('username', $request->username)
-                ->first();
-
-            if(!$user || !Hash::check($request->password, $user->password)) {
-                return null;
-            }
-
-            return $user;
-        });
+        Fortify::authenticateUsing([AuthenticateUser::class, 'authenticate']);
 
         Fortify::registerView(fn() => Inertia::render('Auth/Register'));
 
