@@ -32,6 +32,9 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "useDefineForClassFields": true,
+    "types": [
+      "vite/client"
+    ]
   },
   "include": [
     "resources/js/**/*.ts",
