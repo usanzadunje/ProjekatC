@@ -1,20 +1,19 @@
 <?php
 
+namespace App\Helpers;
+
 use Illuminate\Support\HtmlString;
 
-if(!function_exists('vite_assets')) {
+class ViteAssets
+{
     /**
      * @return HtmlString
-     * @throws Exception
      */
-    function vite_assets(): HtmlString {
+    public static function generate(): HtmlString {
         $devServerIsRunning = false;
 
         if(app()->environment('local')) {
-            try{
-                $devServerIsRunning = true;
-            }catch(Exception){
-            }
+            $devServerIsRunning = true;
         }
 
         if($devServerIsRunning) {
