@@ -12,7 +12,7 @@ use Inertia\Response as InertiaResponse;
 
 class ClientController extends Controller
 {
-    public function index(): InertiaResponse {
+    public function index() {
         // REFACTOR
         // Mora da bude paginated
 
@@ -21,7 +21,6 @@ class ClientController extends Controller
             ->select('id', 'email')
             ->orderByDesc('id')
             ->get();
-
 
         return Inertia::render('Clients/Index', compact('clients'));
     }

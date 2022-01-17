@@ -7,13 +7,14 @@
     <input
         ref="input"
         :id="id"
-        class="border border-gray-200 rounded-full mt-2 px-6 py-3 text-primary-600 font-normal"
+        class="border border-gray-200 rounded-full mt-2 px-6 py-2 text-primary-600 font-normal"
         :class="{ 'border border-red-400': error }"
         :type="type"
         :placeholder="placeholder"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
     />
+    <slot></slot>
     <div v-if="error" class="text-red-500">{{ error }}</div>
   </div>
 </template>
