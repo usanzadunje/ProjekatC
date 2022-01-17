@@ -4,7 +4,15 @@ module.exports = {
         './resources/**/*.{js,jsx,ts,tsx,vue,blade.php}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'primary': {
+                    100: '#DCDEFE',
+                    600: '#5139EF',
+                    900: '#3521B5',
+                },
+            },
+        },
     },
     plugins: [],
 };

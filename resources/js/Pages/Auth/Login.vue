@@ -1,16 +1,73 @@
 <template>
+  <AppHead title="Login"/>
   <div>
-    <AppHead title="Login"/>
-    <div class="p-6 min-h-screen bg-indigo-300">
-      <div class="w-full max-w-md">
-        <form @submit.prevent="login">
-          <label for="username">Login:</label><br>
-          <input type="text" id="username" name="username" v-model="form.username"><br>
-          <label for="password">Password:</label><br>
-          <input type="text" id="password" name="password" v-model="form.password"><br>
-          <input type="submit" value="Login" class="mt-2 border border-black cursor-pointer">
-          <Link :href="route('register')" as="button" type="button" class="mt-2 border border-black">Register</Link>
-        </form>
+    <div class="flex h-screen bg-primary-100 p-4 sm:p-16 md:py-16 md:px-44">
+      <div class="w-full xl:w-1/2 flex flex-col items-center justify-between px-8 sm:px-28 md:px-44 bg-white rounded-l-xl">
+        <div class="w-full h-full flex flex-col justify-center ">
+          <div>
+            <i class="fas fa-bolt text-primary-600 text-5xl"></i>
+          </div>
+          <div class="mt-10">
+            <h1 class="text-3xl font-semibold">Login</h1>
+            <p class="mt-2 text-gray-600">Reserve place for your special occasion!</p>
+          </div>
+          <div class="mt-14">
+            Google sing in
+          </div>
+          <AppSandwichText content="or Sign in with Email" class="py-6 text-gray-300 opacity-85"/>
+          <form @submit.prevent="login">
+            <div class="">
+              <AppInput
+                  :required="true"
+                  label="Login"
+                  type="text"
+                  v-model="form.username"
+                  :error="form.errors.username"
+                  placeholder="Email or username"
+              />
+              <AppInput
+                  :required="true"
+                  label="Password"
+                  type="password"
+                  v-model="form.password"
+                  :error="form.errors.password"
+                  placeholder="•••••••"
+                  class="mt-4"
+              />
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex">
+                  <input type="checkbox" class="bg-primary-600">
+                  <span class="ml-2 font-medium">Remember me</span>
+                </div>
+                <Link :href="route('password.update')"
+                      as="button" type="button"
+                      class="text-primary-600 font-semibold"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+              <AppLoadingButton
+                  :loading="form.processing"
+                  class="bg-primary-600 w-full rounded-full mt-6 py-3 px-6 text-white font-medium"
+              >
+                Login
+              </AppLoadingButton>
+              <div class="mt-8 font-medium">
+                <p>
+                  Not registered yet?
+                  <Link :href="route('register')" as="button" type="button" class="text-primary-600 font-medium">
+                    Create an Account
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="w-full font-medium text-gray-400 mb-8">
+          <i class="far fa-copyright"></i> 2022 ProjekatC All rights reserved.
+        </div>
+      </div>
+      <div class="hidden xl:block w-1/2 rounded-r-xl login-image">
       </div>
     </div>
   </div>
@@ -21,16 +78,20 @@ import { defineComponent } from 'vue';
 import { Link, useForm }   from '@inertiajs/inertia-vue3';
 import route               from 'ziggy';
 
-import AppHead from '@/Shared/AppHead.vue';
-import Layout  from '@/Shared/Layout.vue';
+import AppHead          from '@/Shared/AppHead.vue';
+import AppSandwichText  from '@/Shared/AppSandwichText.vue';
+import AppInput         from '@/Shared/AppInput.vue';
+import AppLoadingButton from '@/Shared/AppLoadingButton.vue';
 
 export default defineComponent({
   name: 'Login',
   components: {
     AppHead,
     Link,
+    AppSandwichText,
+    AppInput,
+    AppLoadingButton,
   },
-  layout: Layout,
   setup() {
 
     const form = useForm({

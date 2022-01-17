@@ -1,0 +1,19 @@
+/**
+    -------------------------
+            Base styles
+    -------------------------
+ */
+
+:root {
+    --primary: #5139EF;
+    --white: #FFFFFF;
+}
+
+:disabled {
+    opacity: 0.7;
+}
+
+html {
+    font-family: 'Poppins', sans-serif !important;
+}
+
