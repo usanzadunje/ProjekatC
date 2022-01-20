@@ -2,7 +2,7 @@
   <div class="relative">
     <div
         class="flex gap-2 cursor-pointer items-center"
-        @click="showDropdown = !showDropdown"
+        @click="hideDropdown"
     >
       <AppAvatar/>
       <AppDisplayName/>
@@ -11,6 +11,7 @@
       </div>
     </div>
     <div
+        ref="dropdown"
         v-show="showDropdown"
         class="cursor-pointer absolute top-11 right-0 z-10 w-44 text-base list-none bg-white rounded-b-xl divide-y divide-gray-100 shadow"
         @click="showDropdown = false"
@@ -22,9 +23,9 @@
           </Link>
         </li>
         <li class="text-gray-700 hover:bg-gray-100 py-2 px-6">
-<!--          <Link :href="route('settings')" as="button" type="button">-->
-            Settings
-<!--          </Link>-->
+          <!--          <Link :href="route('settings')" as="button" type="button">-->
+          Settings
+          <!--          </Link>-->
         </li>
       </ul>
       <div class="text-gray-500 hover:bg-gray-100 rounded-b-xl">
@@ -55,10 +56,29 @@ export default defineComponent({
   setup() {
     /* Component properties */
     const showDropdown = ref<Boolean>(false);
+    const dropdown = ref();
+
+    /* Event handlers */
+    // Making sure to close dropdown no matter where user clicks on page
+    document.addEventListener('click', () => {
+      if(showDropdown.value) {
+        showDropdown.value = false;
+      }
+    });
+    const hideDropdown = (e: Event) => {
+      // Stopping propagation so document event doesn't cancel this event
+      // in event propagation cascading
+      e.stopPropagation();
+
+      showDropdown.value = !showDropdown.value;
+    };
 
     return {
+      hideDropdown,
       /* Component properties */
       showDropdown,
+      dropdown,
+
       /* Helpers */
       route,
     };
