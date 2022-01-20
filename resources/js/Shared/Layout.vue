@@ -1,4 +1,5 @@
 <template>
+  <AppNav/>
   <div class="flex justify-center">
     <div class="container flex justify-center">
       <slot/>
@@ -11,11 +12,13 @@
 import { defineComponent } from 'vue';
 
 import AppFlashMessages from '@/Shared/AppFlashMessages.vue';
+import AppNav           from '@/Shared/AppNav.vue';
 
 export default defineComponent({
   name: 'Layout',
   components: {
     AppFlashMessages,
+    AppNav,
   },
   setup() {
 
