@@ -15,27 +15,17 @@
       </div>
       <div class="flex items-center gap-4">
         <div
+            v-for="menuLink in menu"
+            :key="menuLink.name"
             class="flex items-center rounded-md py-2 px-3.5"
-            :class="isURL('regular.dashboard') ? 'bg-primary-100 text-black' : 'text-gray-500 hover:text-primary-600'"
+            :class="isRoute(menuLink.matchedRoutes) ? 'bg-primary-100 text-black' : 'text-gray-500 hover:text-primary-600'"
         >
           <i
-              class="fas fa-map-marked-alt text-xl mr-2"
-              :class="isURL('regular.dashboard') ? 'text-primary-600' : ''"
+              class="text-xl mr-2"
+              :class="[isRoute(menuLink.matchedRoutes) ? 'text-primary-600' : '', menuLink.icon]"
           ></i>
-          <Link :href="route('regular.dashboard')" as="button" type="button" class="font-medium">
-            Places
-          </Link>
-        </div>
-        <div
-            class="flex items-center rounded-md py-2 px-3.5"
-            :class="isURL('regular.reservation.index') ? 'bg-primary-100 text-black' : 'text-gray-500 hover:text-primary-600'"
-        >
-          <i
-              class="fab fa-rust text-xl mr-2"
-              :class="isURL('regular.reservation.index') ? 'text-primary-600' : ''"
-          ></i>
-          <Link :href="route('regular.reservation.index')" as="button" type="button" class="font-medium">
-            Reservations
+          <Link :href="route(menuLink.route)" as="button" type="button" class="font-medium">
+            {{ menuLink.name }}
           </Link>
         </div>
       </div>
@@ -52,6 +42,8 @@ import route                         from 'ziggy';
 import AppSearchBox    from '@/Shared/AppSearchBox.vue';
 import ProfileDropdown from '@/Shared/ProfileDropdown.vue';
 
+import { MenuLink } from '@/types';
+
 export default defineComponent({
   name: 'AppNav',
   components: {
@@ -61,17 +53,36 @@ export default defineComponent({
   },
   props: {},
   setup() {
+    /* Component properties */
     const currentRouteName = computed<string>(() => usePage().props.value.route as string);
+    const menu: MenuLink[] = [
+      {
+        name: 'Places',
+        route: 'regular.dashboard',
+        matchedRoutes: 'regular.dashboard',
+        icon: 'fas fa-map-marked-alt',
+      },
+      {
+        name: 'Reservations',
+        route: 'regular.reservation.index',
+        matchedRoutes: 'regular.reservation.index',
+        icon: 'fab fa-rust',
+      },
+    ];
 
-    const isURL = (...urls: string[]): Boolean => {
-      return urls.includes(currentRouteName.value);
+    /* Helpers */
+    const isRoute = (...routes: string[]): Boolean => {
+      return routes.includes(currentRouteName.value);
     };
 
 
     return {
+      /* Component properties */
+      menu,
+
       /* Helpers */
       route,
-      isURL,
+      isRoute,
     };
   },
 });

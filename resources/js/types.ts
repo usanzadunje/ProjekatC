@@ -93,3 +93,22 @@ declare enum Role {
      */
     REGULAR,
 }
+
+export interface MenuLink {
+    /**
+     * Display name of menu link
+     */
+    name: string;
+    /**
+     * Route name to which this menu link will route to
+     */
+    route: string;
+    /**
+     * All the routes that match this link, used for displaying link as active when on these routes
+     */
+    matchedRoutes: string;
+    /**
+     * Icon to be shown next to the menu link name
+     */
+    icon: string;
+}
