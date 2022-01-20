@@ -18,11 +18,11 @@
             v-for="menuLink in menu"
             :key="menuLink.name"
             class="flex items-center rounded-md py-2 px-3.5"
-            :class="isRoute(menuLink.matchedRoutes) ? 'bg-primary-100 text-black' : 'text-gray-500 hover:text-primary-600'"
+            :class="isURL(menuLink.matchedURLs) ? 'bg-primary-100 text-black' : 'text-gray-500 hover:text-primary-600'"
         >
           <i
               class="text-xl mr-2"
-              :class="[isRoute(menuLink.matchedRoutes) ? 'text-primary-600' : '', menuLink.icon]"
+              :class="[isURL(menuLink.matchedURLs) ? 'text-primary-600' : '', menuLink.icon]"
           ></i>
           <Link :href="route(menuLink.route)" as="button" type="button" class="font-medium">
             {{ menuLink.name }}
@@ -54,25 +54,35 @@ export default defineComponent({
   props: {},
   setup() {
     /* Component properties */
-    const currentRouteName = computed<string>(() => usePage().props.value.route as string);
+    const currentURL = computed<string>(() => usePage().url.value as string);
     const menu: MenuLink[] = [
       {
         name: 'Places',
         route: 'regular.dashboard',
-        matchedRoutes: 'regular.dashboard',
+        matchedURLs: ['root', 'reservation'],
         icon: 'fas fa-map-marked-alt',
       },
       {
         name: 'Reservations',
         route: 'regular.reservation.index',
-        matchedRoutes: 'regular.reservation.index',
+        matchedURLs: ['reservation'],
         icon: 'fab fa-rust',
       },
     ];
 
     /* Helpers */
-    const isRoute = (...routes: string[]): Boolean => {
-      return routes.includes(currentRouteName.value);
+    const isURL = (urls: string[]): Boolean => {
+      const current: string = currentURL.value.substring(1);
+      /**
+       * Since root route URL which is '/' (empty string, when substring) will match every single URL in filter string function
+       * we gave it an alias of 'root' which will match route '/' but no other route
+       * 'root' alias should be unique and should not be present in any other route URL, or it will cause false positives
+       */
+      if(urls[0] === 'root' && current === '') {
+        return true;
+      }
+
+      return !!urls.filter(url => current.startsWith(url)).length;
     };
 
 
@@ -82,7 +92,7 @@ export default defineComponent({
 
       /* Helpers */
       route,
-      isRoute,
+      isURL,
     };
   },
 });
