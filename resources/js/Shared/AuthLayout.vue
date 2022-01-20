@@ -1,13 +1,13 @@
 <template>
   <AppHead :title="heading"/>
-  <div class="flex h-screen bg-primary-100 p-4 sm:p-16 md:py-16 md:px-44">
+  <div class="flex h-screen bg-primary-100 p-4 sm:p-16 md:py-14 md:px-44">
     <div
         class="w-full h-full xl:w-1/2 flex flex-col items-center justify-between px-8 sm:px-28 md:px-44 bg-white rounded-l-xl">
       <div class="w-full h-full flex flex-col justify-center ">
         <div>
           <i class="fas fa-bolt text-primary-600 text-5xl"></i>
         </div>
-        <div class="mt-10">
+        <div class="mt-6">
           <h1 class="text-3xl font-semibold">{{ heading }}</h1>
           <p class="mt-2 text-gray-600">Reserve place for your special occasion!</p>
         </div>

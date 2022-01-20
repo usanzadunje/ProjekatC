@@ -9,6 +9,7 @@
             v-model="form.username"
             :error="form.errors.username"
             placeholder="Email or username"
+            @focus="form.clearErrors('username')"
         />
         <AppInput
             :required="true"
@@ -18,6 +19,7 @@
             :error="form.errors.password"
             placeholder="•••••••"
             class="mt-4"
+            @focus="form.clearErrors('password')"
         />
         <div class="flex justify-between items-center mt-4">
           <div class="flex">
@@ -40,7 +42,7 @@
         <div class="mt-8 font-medium">
           <p>
             Not registered yet?
-            <Link :href="route('register')" as="button" type="button" class="text-primary-600 font-semibold">
+            <Link :href="route('register')" as="button" type="button" class="text-primary-600 font-semibold" replace>
               Create an Account
             </Link>
           </p>

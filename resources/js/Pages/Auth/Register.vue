@@ -9,6 +9,7 @@
             v-model="form.email"
             :error="form.errors.email"
             placeholder="mail@website.com"
+            @focus="form.clearErrors('email')"
         />
         <AppInput
             :required="true"
@@ -18,6 +19,7 @@
             :error="form.errors.password"
             placeholder="Min. 8 characters"
             class="mt-4"
+            @focus="form.clearErrors('password')"
         />
         <AppInput
             :required="true"
@@ -27,10 +29,16 @@
             :error="form.errors.password"
             placeholder="Confirm password"
             class="mt-4"
+            @focus="form.clearErrors('password')"
         />
         <div>
           <div class="flex items-center mt-4">
-            <input type="checkbox" class="bg-primary-600" v-model="form.tos">
+            <input
+                type="checkbox"
+                class="bg-primary-600"
+                v-model="form.tos"
+                @focus="form.clearErrors('tos')"
+            >
             <p class="ml-2 font-medium">I agree to
               <span class="text-primary-600 font-semibold">Terms & Conditions</span>
             </p>
@@ -46,7 +54,7 @@
         <div class="mt-8 font-medium">
           <p>
             Already have an account?
-            <Link :href="route('login')" as="button" type="button" class="text-primary-600 font-semibold">
+            <Link :href="route('login')" as="button" type="button" class="text-primary-600 font-semibold" replace>
               Sign in
             </Link>
           </p>
@@ -78,6 +86,7 @@ export default defineComponent({
     AppLoadingButton,
   },
   setup() {
+    /* Component properties */
     const form = useForm({
       email: null,
       password: null,
@@ -85,6 +94,7 @@ export default defineComponent({
       tos: false,
     });
 
+    /* Event handlers */
     const register = () => {
       form.post(
           route('register'),
@@ -95,8 +105,13 @@ export default defineComponent({
     };
 
     return {
+      /* Component properties */
       form,
+
+      /* Event handlers */
       register,
+
+      /* Helpers */
       route,
     };
   },

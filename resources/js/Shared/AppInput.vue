@@ -13,6 +13,7 @@
         :placeholder="placeholder"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        @focus="$emit('focus')"
     />
     <slot></slot>
     <div v-if="error" class="text-red-500">{{ error }}</div>
@@ -26,6 +27,7 @@ import { v4 as uuid } from 'uuid';
 export default defineComponent({
   name: 'AppInput',
   components: {},
+  emits: ['focus', 'update'],
   props: {
     label: {
       type: String,
@@ -44,7 +46,7 @@ export default defineComponent({
       type: String,
     },
     required: {
-      type: Boolean
+      type: Boolean,
     },
     error: {
       type: String,
