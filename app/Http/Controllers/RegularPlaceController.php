@@ -9,7 +9,7 @@ use Inertia\Response as InertiaResponse;
 class RegularPlaceController extends Controller
 {
     public function index(): InertiaResponse {
-        $places = Place::all();
+        $places = Place::select(['id', 'name', 'address', 'city'])->simplePaginate(12);
 
         return Inertia::render('Places/Regular/Index', compact('places'));
     }
