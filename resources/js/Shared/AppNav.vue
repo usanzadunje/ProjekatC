@@ -17,16 +17,17 @@
         <div
             v-for="menuLink in menu"
             :key="menuLink.name"
-            class="flex items-center rounded-md py-2 px-3.5"
+            class="flex items-center rounded-md py-2 px-3.5 cursor-pointer"
             :class="isURL(menuLink.matchedURLs) ? 'bg-primary-100 text-black' : 'text-gray-500 hover:text-primary-600'"
+            @click="Inertia.get(route(menuLink.route))"
         >
           <i
               class="text-xl mr-2"
               :class="[isURL(menuLink.matchedURLs) ? 'text-primary-600' : '', menuLink.icon]"
           ></i>
-          <Link :href="route(menuLink.route)" as="button" type="button" class="font-medium">
+          <span class="font-medium">
             {{ menuLink.name }}
-          </Link>
+          </span>
         </div>
       </div>
     </div>
@@ -36,6 +37,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
+import { Inertia }                   from '@inertiajs/inertia';
 import { Link, usePage }             from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 
@@ -48,8 +50,8 @@ export default defineComponent({
   name: 'AppNav',
   components: {
     AppSearchBox,
-    ProfileDropdown,
     Link,
+    ProfileDropdown,
   },
   props: {},
   setup() {
@@ -59,7 +61,7 @@ export default defineComponent({
       {
         name: 'Places',
         route: 'regular.dashboard',
-        matchedURLs: ['root', 'reservation'],
+        matchedURLs: ['root'],
         icon: 'fas fa-map-marked-alt',
       },
       {
@@ -89,6 +91,7 @@ export default defineComponent({
     return {
       /* Component properties */
       menu,
+      Inertia,
 
       /* Helpers */
       route,
