@@ -60,8 +60,8 @@ export default defineComponent({
     const menu: MenuLink[] = [
       {
         name: 'Places',
-        route: 'regular.dashboard',
-        matchedURLs: ['root'],
+        route: 'regular.place.index',
+        matchedURLs: ['place'],
         icon: 'fas fa-map-marked-alt',
       },
       {
@@ -69,6 +69,12 @@ export default defineComponent({
         route: 'regular.reservation.index',
         matchedURLs: ['reservation'],
         icon: 'fab fa-rust',
+      },
+      {
+        name: 'Dashboard',
+        route: 'regular.dashboard',
+        matchedURLs: ['dashboard'],
+        icon: 'fas fa-th-large',
       },
     ];
 

@@ -106,9 +106,9 @@ export interface MenuLink {
     /**
      * All strings that match this link starting route URL, used for displaying link as active when on these URLs
      */
-    matchedURLs: string[];
+    matchedURLs?: string[];
     /**
      * Icon to be shown next to the menu link name
      */
-    icon: string;
+    icon?: string;
 }

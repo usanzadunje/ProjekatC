@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::inertia('/', 'Dashboard/Staff')->name('dashboard');
+Route::inertia('/dashboard', 'Dashboard/Staff')->name('dashboard');
 
 Route::resource('reservation', StaffReservationController::class);

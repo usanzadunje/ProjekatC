@@ -17,15 +17,14 @@
         @click="showDropdown = false"
     >
       <ul>
-        <li class="text-gray-700 hover:bg-gray-100 py-2 px-6">
-          <Link :href="route('regular.reservation.index')" as="button" type="button">
-            Reservations
+        <li
+            v-for="menuLink in menu"
+            :key="menuLink.name"
+            class="text-gray-700 hover:bg-gray-100 py-2 px-6"
+        >
+          <Link :href="route(menuLink.route)" as="button" type="button">
+            {{ menuLink.name }}
           </Link>
-        </li>
-        <li class="text-gray-700 hover:bg-gray-100 py-2 px-6">
-          <!--          <Link :href="route('settings')" as="button" type="button">-->
-          Settings
-          <!--          </Link>-->
         </li>
       </ul>
       <div class="text-gray-500 hover:bg-gray-100 rounded-b-xl">
@@ -44,6 +43,7 @@ import route                    from 'ziggy';
 
 import AppAvatar      from '@/Shared/AppAvatar.vue';
 import AppDisplayName from '@/Shared/AppDisplayName.vue';
+import { MenuLink }   from '@/types';
 
 export default defineComponent({
   name: 'ProfileDropdown',
@@ -57,6 +57,20 @@ export default defineComponent({
     /* Component properties */
     const showDropdown = ref<Boolean>(false);
     const dropdown = ref();
+    const menu: MenuLink[] = [
+      {
+        name: 'Dashboard',
+        route: 'regular.dashboard',
+      },
+      {
+        name: 'Reservations',
+        route: 'regular.reservation.index',
+      },
+      {
+        name: 'Settings',
+        route: 'regular.dashboard',
+      },
+    ];
 
     /* Event handlers */
     // Making sure to close dropdown no matter where user clicks on page
@@ -74,10 +88,13 @@ export default defineComponent({
     };
 
     return {
-      hideDropdown,
       /* Component properties */
       showDropdown,
       dropdown,
+      menu,
+
+      /* Event handlers */
+      hideDropdown,
 
       /* Helpers */
       route,

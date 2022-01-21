@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegularPlaceController;
 use App\Http\Controllers\RegularReservationController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,16 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::inertia('/', 'Dashboard/Regular')->name('dashboard');
+Route::inertia('/dashboard', 'Dashboard/Regular')->name('dashboard');
 
+// Place based routes
+Route::controller(RegularPlaceController::class)
+    ->prefix('place')
+    ->as('place.')
+    ->group(function() {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{place}', 'show')->name('show');
+    });
+
+// Reservation based routes
 Route::resource('reservation', RegularReservationController::class);

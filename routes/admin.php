@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::inertia('/', 'Dashboard/Admin')->name('dashboard');
+Route::inertia('/dashboard', 'Dashboard/Admin')->name('dashboard');
 
 Route::resource('client', ClientController::class);
 
