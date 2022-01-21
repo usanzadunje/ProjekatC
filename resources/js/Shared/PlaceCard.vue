@@ -1,26 +1,37 @@
 <template>
-  <div class="h-9 w-9 rounded-full">
-    <img
-        :src="avatarPath($page.props.auth.user.avatar)"
-        alt="User avatar"
-        class="rounded-full object-cover object-center"
-    >
+  <div
+      class="bg-white rounded-xl h-60 w-full word-wrap"
+  >
+    <PlaceLogo
+      :place-name="place.name"
+    />
+
+    {{ place.name }}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { avatarPath }      from '@/utils/path';
+import { defineComponent, PropType } from 'vue';
+
+import PlaceLogo from '@/Shared/PlaceLogo.vue';
+
+import { Place } from '@/types';
 
 export default defineComponent({
-  name: 'AppAvatar',
-  components: {},
-  props: {},
+  name: 'PlaceCard',
+  components: {
+    PlaceLogo,
+  },
+  props: {
+    place: {
+      type: Object as PropType<Place>,
+      required: true,
+    },
+  },
   setup() {
 
 
     return {
-      avatarPath,
     };
   },
 });

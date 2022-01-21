@@ -13,13 +13,15 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run() {
-        Storage::disk('public')->deleteDirectory('avatars');
-        Storage::disk('public')->makeDirectory('avatars');
+        Storage::disk('public')->deleteDirectory('img');
+        Storage::disk('public')->makeDirectory('img/avatars');
+        Storage::disk('public')->makeDirectory('img/places');
 
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
             ReservationSeeder::class,
+            ImageSeeder::class,
         ]);
     }
 }

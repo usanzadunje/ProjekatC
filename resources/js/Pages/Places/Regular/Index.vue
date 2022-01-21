@@ -1,20 +1,16 @@
 <template>
-  <div class="px-8 sm:px-4">
+  <div class="px-8">
     <AppHead title="Places"/>
 
     <h1 class="text-4xl font-semibold mt-10">Places</h1>
 
-
-    <div class="flex flex-wrap gap-8 mt-6">
-      <div
+    <div class="grid grid-cols-fit gap-8 mt-6">
+      <PlaceCard
           v-for="place in places"
           :key="place.id"
-          class="bg-white rounded-xl h-60 w-72 grow"
-      >
-
-      </div>
+          :place="place"
+      />
     </div>
-    {{ places }}
   </div>
 </template>
 
@@ -23,8 +19,9 @@ import { defineComponent, PropType } from 'vue';
 import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 
-import AppHead from '@/Shared/AppHead.vue';
-import Layout  from '@/Shared/Layout.vue';
+import AppHead   from '@/Shared/AppHead.vue';
+import Layout    from '@/Shared/Layout.vue';
+import PlaceCard from '@/Shared/PlaceCard.vue';
 
 import { Place } from '@/types';
 
@@ -33,6 +30,7 @@ export default defineComponent({
   components: {
     AppHead,
     Link,
+    PlaceCard,
   },
   layout: Layout,
   props: {
@@ -47,3 +45,8 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.grid-cols-fit {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+</style>

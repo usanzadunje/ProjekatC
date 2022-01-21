@@ -4,7 +4,7 @@
         class="flex gap-2 cursor-pointer items-center"
         @click="hideDropdown"
     >
-      <AppAvatar/>
+      <AppAvatar :avatar="$page.props.auth.user.avatar"/>
       <AppDisplayName/>
       <div>
         <i class="fas fa-chevron-down text-gray-300"></i>

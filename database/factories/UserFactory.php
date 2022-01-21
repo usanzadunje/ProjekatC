@@ -47,7 +47,11 @@ class UserFactory extends Factory
     public function withAvatar() {
         return $this->state(function(array $attributes) {
             return [
-                'avatar' => $this->faker->image(storage_path('app/public/avatars'), 50, 50, null, false),
+                'avatar' => $this->faker->image(
+                    storage_path('app/public/img/avatars'),
+                    50, 50,
+                    null, false
+                ),
             ];
         });
     }
@@ -61,7 +65,6 @@ class UserFactory extends Factory
         return $this->state(function(array $attributes) {
             return [
                 'role_id' => Role::ADMIN,
-                'password' => '$2y$10$qTXbAxsGHlszIXdFCRzSNeurpE2CEtFGJCSt5nViCTtaicFl6R3LC' //admin,
             ];
         });
     }
@@ -75,7 +78,6 @@ class UserFactory extends Factory
         return $this->state(function(array $attributes) {
             return [
                 'role_id' => Role::STAFF,
-                'password' => '$2y$10$NggD/EuLR7HEWZpXoWzu9eyoxC/mZC9D7qOXYT01F//D9QHH17.G6' //staff,
             ];
         });
     }
@@ -89,7 +91,6 @@ class UserFactory extends Factory
         return $this->state(function(array $attributes) {
             return [
                 'role_id' => Role::REGULAR,
-                'password' => '$2y$10$uT5Z56rNbqk3bIt7gQODQOauiiArqkdcRPfE5z64LincBNei1dFa.' //regular,
             ];
         });
     }
