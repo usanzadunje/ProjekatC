@@ -1,5 +1,5 @@
 <template>
-<!--  <AppNav/>-->
+  <AppNav/>
   <div class="flex justify-center">
     <div class="container">
       <slot/>

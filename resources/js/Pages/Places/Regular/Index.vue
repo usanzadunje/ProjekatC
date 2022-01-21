@@ -9,6 +9,8 @@
           v-for="place in places"
           :key="place.id"
           :place="place"
+          class="cursor-pointer hover:scale-95 hover:shadow-md"
+          @click="Inertia.get(route('regular.place.show', place.id))"
       />
     </div>
   </div>
@@ -16,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { Inertia }                      from '@inertiajs/inertia';
 import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 
@@ -40,6 +43,8 @@ export default defineComponent({
   },
   setup() {
     return {
+      /* Component properties */
+      Inertia,
       route,
     };
   },

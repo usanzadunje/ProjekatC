@@ -1,9 +1,15 @@
 export function storagePath(path) {
     return `/storage/${path}`;
 }
-export function avatarPath(avatar) {
-    return storagePath(`avatars/${avatar}`);
+export function imgPath(path) {
+    return storagePath(`img/${path}`);
 }
-export function placeLogoPath(placeName) {
-    return storagePath(`${placeName}/avatar.png`);
+export function avatarPath(avatar) {
+    return imgPath(`avatars/${avatar}`);
+}
+export function placeImgPath(path) {
+    return imgPath(`places/${path}`);
+}
+export function placeLogoPath(placeId) {
+    return placeImgPath(`${placeId}/logo.png`);
 }

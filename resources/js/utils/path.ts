@@ -2,10 +2,18 @@ export function storagePath(path: string): string {
     return `/storage/${path}`;
 }
 
-export function avatarPath(avatar: string): string {
-    return storagePath(`avatars/${avatar}`);
+export function imgPath(path: string): string {
+    return storagePath(`img/${path}`);
 }
 
-export function placeLogoPath(placeName: string): string {
-    return storagePath(`${placeName}/avatar.png`);
+export function avatarPath(avatar: string): string {
+    return imgPath(`avatars/${avatar}`);
+}
+
+export function placeImgPath(path: string): string {
+    return imgPath(`places/${path}`);
+}
+
+export function placeLogoPath(placeId: number): string {
+    return placeImgPath(`${placeId}/logo.png`);
 }

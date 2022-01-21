@@ -1,7 +1,7 @@
 <template>
-  <div class="relative bg-gray-100 rounded-md searchbox">
+  <div class="relative bg-gray-100 rounded-xl">
     <div
-        class="absolute top-0 left-2 flex items-center h-full text-sm font-medium opacity-50"
+        class="absolute top-0 left-4 flex items-center h-full text-sm font-medium opacity-50"
     >
       <i class="fas fa-search"></i>
     </div>
@@ -9,13 +9,13 @@
         ref="searchbox"
         type="search"
         placeholder="Search"
-        class="py-2 pl-7 pr-1 w-44 rounded-md text-sm"
+        class="py-3 pl-9 pr-2 w-46 rounded-xl text-sm"
         @focus="showShortcut = false"
         @blur="showShortcut = true"
     >
     <span
         v-show="showShortcut"
-        class="absolute top-0 right-2 flex items-center h-full text-sm font-medium opacity-50"
+        class="absolute top-0 right-4 flex items-center h-full text-sm font-medium opacity-50"
     >
       CTRL+I
     </span>

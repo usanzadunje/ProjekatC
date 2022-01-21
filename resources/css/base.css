@@ -7,14 +7,13 @@
 :root {
     --primary: #5139EF;
     --white: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #F3F5F7;
 }
 
 :disabled {
     opacity: 0.7;
 }
 
-html {
-    font-family: 'Poppins', sans-serif !important;
-    background-color: #F3F4F6;
-}
 

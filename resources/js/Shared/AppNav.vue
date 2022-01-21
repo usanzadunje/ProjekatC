@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full h-14 px-4 flex justify-between items-center bg-white">
+  <div class="w-full py-6 px-6 flex justify-between items-center bg-white">
     <div class="flex items-center">
       <div class="mr-6">
         <Link
-            :href="route('home')"
+            :href="route('regular.place.index')"
             as="button" type="button"
             class="font-medium text-2xl hover:text-gray-500"
         >

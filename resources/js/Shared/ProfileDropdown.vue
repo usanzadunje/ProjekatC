@@ -6,9 +6,7 @@
     >
       <AppAvatar :avatar="$page.props.auth.user.avatar"/>
       <AppDisplayName/>
-      <div>
-        <i class="fas fa-chevron-down text-gray-300"></i>
-      </div>
+      <i class="fas fa-chevron-down text-gray-400 ml-1"></i>
     </div>
     <div
         ref="dropdown"

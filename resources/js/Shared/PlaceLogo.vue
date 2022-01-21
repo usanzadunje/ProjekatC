@@ -1,9 +1,9 @@
 <template>
-  <div class="h-9 w-9 rounded-full">
+  <div>
     <img
-        :src="placeLogoPath(placeName)"
+        :src="placeLogoPath(placeId)"
         alt="Place logo image"
-        class="rounded-full object-cover object-center"
+        class="h-14 w-14 rounded-full object-cover object-center"
     >
   </div>
 </template>
@@ -17,8 +17,8 @@ export default defineComponent({
   name: 'PlaceLogo',
   components: {},
   props: {
-    placeName: {
-      type: Object as PropType<string>,
+    placeId: {
+      type: Object as PropType<number>,
       required: true,
     },
   },

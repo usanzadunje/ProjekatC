@@ -6,6 +6,7 @@ use App\Actions\Reservation\CreateNewReservationAction;
 use App\Actions\Reservation\GetReservationsAction;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Place;
 use App\Models\Reservation;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -24,8 +25,8 @@ class RegularReservationController extends Controller
         return Inertia::render('Reservations/Regular/Index', compact('reservations'));
     }
 
-    public function create(): InertiaResponse {
-        return Inertia::render('Reservations/Regular/Create');
+    public function create(Place $place): InertiaResponse {
+        return Inertia::render('Reservations/Regular/Create', compact('place'));
     }
 
     public function store(StoreReservationRequest $request, CreateNewReservationAction $createNewReservationAction): RedirectResponse {

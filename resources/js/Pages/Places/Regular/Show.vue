@@ -1,6 +1,8 @@
 <template>
   <div>
     <AppHead :title="place.name"/>
+
+    {{ place }}
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default defineComponent({
   layout: Layout,
   props: {
     place: {
-      type: Object as PropType<Place[]>,
+      type: Object as PropType<Place>,
     },
   },
   setup() {
