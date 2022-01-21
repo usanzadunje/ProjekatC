@@ -1,5 +1,5 @@
 <template>
-  <div class="px-8">
+  <div class="px-8 pb-8">
     <AppHead title="Places"/>
 
     <h1 class="text-4xl font-semibold mt-10">Places</h1>

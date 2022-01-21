@@ -3,6 +3,7 @@
 namespace App\Http\Responses;
 
 use Illuminate\Http\Request;
+use Laravel\Fortify\Fortify;
 use Symfony\Component\HttpFoundation\Response;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
@@ -17,7 +18,7 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request) {
         return $request->wantsJson()
-            ? response()->json(['two_factor' => false, 'success' => 'Welcome back!'])
-            : redirect()->route('admin.dashboard')->with('success', 'Welcome back!');
+            ? response()->json(['success' => 'Welcome back!'])
+            : redirect()->intended(Fortify::redirects('login'))->with('success', 'Welcome back!');
     }
 }

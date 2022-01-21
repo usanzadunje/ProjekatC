@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full py-6 px-6 flex justify-between items-center bg-white">
+  <div class="w-full py-5 px-6 flex justify-between items-center bg-white">
     <div class="flex items-center">
       <div class="mr-6">
         <Link
             :href="route('regular.place.index')"
             as="button" type="button"
-            class="font-medium text-2xl hover:text-gray-500"
+            class="font-medium text-2xl hover:text-primary-100"
         >
           ProjekatC
         </Link>
@@ -31,7 +31,24 @@
         </div>
       </div>
     </div>
-    <ProfileDropdown/>
+    <ProfileDropdown v-if="$page.props.auth.user"/>
+    <div v-else>
+      <Link
+          :href="route('login')"
+          as="button" type="button"
+          class="font-medium text-lg hover:text-primary-600"
+      >
+        Login
+      </Link>
+      /
+      <Link
+          :href="route('register')"
+          as="button" type="button"
+          class="font-medium text-lg hover:text-primary-600"
+      >
+        Register
+      </Link>
+    </div>
   </div>
 </template>
 

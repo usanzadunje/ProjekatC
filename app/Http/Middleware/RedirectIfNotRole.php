@@ -18,6 +18,10 @@ class RedirectIfNotRole
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next, string $role) {
+        if($role === 'regular' && !auth()->check()) {
+            return $next($request);
+        }
+
         if(!$request->user()->hasRole($role)) {
             return redirect(RouteServiceProvider::HOME);
         }

@@ -2,16 +2,12 @@
   <div>
     <AppHead title="Welcome"/>
     <h1 class="text-3xl text-red-500">Welcome to Projekat C</h1>
+
     <div v-if="!$page.props.auth.user">
-      <Link :href="route('login')" as="button" type="button" class="mt-2 border border-black">Login</Link>
-      <Link :href="route('register')" as="button" type="button" class="mt-2 border border-black">Register</Link>
-    </div>
-    <div v-else>
       <Link :href="route('logout')" method="post" as="button" type="button" class="mt-2 border border-black">
         Logout
       </Link>
     </div>
-
   </div>
 </template>
 
