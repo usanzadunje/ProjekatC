@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,10 +33,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Place whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Place whereUserId($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|Place filter(string $filter, array $columns)
  */
 class Place extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
 
     /**
      * The attributes that are mass assignable.
