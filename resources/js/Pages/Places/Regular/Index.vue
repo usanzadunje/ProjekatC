@@ -66,17 +66,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue';
-import { Inertia }                               from '@inertiajs/inertia';
-import { Link }                                  from '@inertiajs/inertia-vue3';
-import route                                     from 'ziggy';
+import { defineComponent, PropType, ref } from 'vue';
+import { Inertia }                        from '@inertiajs/inertia';
+import { Link }                           from '@inertiajs/inertia-vue3';
+import route                              from 'ziggy';
 
 import AppHead      from '@/Shared/AppHead.vue';
 import Layout       from '@/Shared/Layout.vue';
 import PlaceCard    from '@/Shared/PlaceCard.vue';
 import AppSearchBox from '@/Shared/AppSearchBox.vue';
 
-import { debounce } from '@/utils/helpers';
+import { useDebouncedWatcher } from '@/composables/useDebouncedWatcher';
 
 import { Place } from '@/types';
 
@@ -98,7 +98,11 @@ export default defineComponent({
     /* Component properties */
     const filter = ref<string>('');
 
-    watch(filter, debounce);
+    const { debouncedWatch } = useDebouncedWatcher();
+
+    debouncedWatch(filter, function() {
+      console.log(filter.value);
+    }, 1000);
 
     return {
       /* Component properties */
