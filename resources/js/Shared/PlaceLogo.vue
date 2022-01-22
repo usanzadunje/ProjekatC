@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
 
 import { placeLogoPath } from '@/utils/path';
 
@@ -18,7 +18,7 @@ export default defineComponent({
   components: {},
   props: {
     placeId: {
-      type: Object as PropType<number>,
+      type: Number,
       required: true,
     },
   },

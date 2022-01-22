@@ -7,9 +7,10 @@
 :root {
     --primary: #5139EF;
     --white: #FFFFFF;
+    --primary-paint: #F3F5F7;
 
     font-family: 'Poppins', sans-serif !important;
-    background-color: #F3F5F7;
+    background-color: var(--primary-paint);
 }
 
 :disabled {

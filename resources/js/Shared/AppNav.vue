@@ -11,7 +11,10 @@
         </Link>
       </div>
       <div class="mr-24">
-        <AppSearchBox/>
+        <AppSearchBox
+            :global="true"
+            css-classes="bg-primary-paint-300"
+        />
       </div>
       <div class="flex items-center gap-4">
         <div

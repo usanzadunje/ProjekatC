@@ -38,10 +38,6 @@ input[type="checkbox"]:checked:after {
     display: block;
 }
 
-input[type="search"] {
-    background: #F3F4F6;
-}
-
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     height: 16px;

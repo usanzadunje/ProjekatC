@@ -27,7 +27,7 @@ import { v4 as uuid } from 'uuid';
 export default defineComponent({
   name: 'AppInput',
   components: {},
-  emits: ['focus', 'update'],
+  emits: ['focus', 'update:modelValue'],
   props: {
     label: {
       type: String,

@@ -6,14 +6,18 @@
       <i class="fas fa-search"></i>
     </div>
     <input
-        ref="searchbox"
+        :ref="global ? 'searchBox' : ''"
         type="search"
         placeholder="Search"
         class="py-3 pl-9 pr-2 w-46 rounded-xl text-sm"
+        :class="cssClasses"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
         @focus="showShortcut = false"
         @blur="showShortcut = true"
     >
     <span
+        v-if="global"
         v-show="showShortcut"
         class="absolute top-0 right-4 flex items-center h-full text-sm font-medium opacity-50"
     >
@@ -28,35 +32,50 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'AppSearchBox',
   components: {},
-  props: {},
-  setup() {
+  props: {
+    global: {
+      type: Boolean,
+      default: false,
+    },
+    modelValue: {
+      type: String,
+    },
+    cssClasses: {
+      type: String,
+    },
+  },
+  emits: ['update:modelValue', 'focus', 'blur'],
+  setup(props) {
     /* Component properties */
-    const searchbox = ref();
+    const searchBox = ref();
     const showShortcut = ref<Boolean>(true);
 
-    let keys: number[] = [];
 
-    window.addEventListener('keyup', function(e) {
-      let { keyCode } = e || Event;
+    if(props.global) {
+      let keys: number[] = [];
 
-      if(keyCode === 17 || keyCode === 73) {
-        keys[keyCode] = keyCode;
+      window.addEventListener('keyup', function(e) {
+        let { keyCode } = e || Event;
 
-        setTimeout(() => {
+        if(keyCode === 17 || keyCode === 73) {
+          keys[keyCode] = keyCode;
+
+          setTimeout(() => {
+            keys = [];
+          }, 500);
+        }
+
+        if(keys[17] && keys[73]) {
+          searchBox.value.focus();
+
           keys = [];
-        }, 500);
-      }
-
-      if(keys[17] && keys[73]) {
-        searchbox.value.focus();
-
-        keys = [];
-      }
-    });
+        }
+      });
+    }
 
     return {
       /* Component properties */
-      searchbox,
+      searchBox,
       showShortcut,
     };
   },
