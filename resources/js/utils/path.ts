@@ -1,3 +1,7 @@
+/**
+ * Helper file for defining different paths to backend app.
+ */
+
 export function storagePath(path: string): string {
     return `/storage/${path}`;
 }

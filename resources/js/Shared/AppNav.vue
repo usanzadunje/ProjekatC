@@ -10,13 +10,12 @@
           ProjekatC
         </Link>
       </div>
-      <div class="mr-24">
         <AppSearchBox
             :global="true"
+            class="hidden md:flex mr-16"
             css-classes="bg-primary-paint-300"
         />
-      </div>
-      <div class="flex items-center gap-4">
+      <div class="hidden lg:flex  items-center gap-4">
         <div
             v-for="menuLink in menu"
             :key="menuLink.name"
