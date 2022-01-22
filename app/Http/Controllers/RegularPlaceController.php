@@ -20,6 +20,8 @@ class RegularPlaceController extends Controller
 
 
     public function show(Place $place): InertiaResponse {
+        $place = $place->only('id', 'name', 'address', 'city');
+
         return Inertia::render('Places/Regular/Show', compact('place'));
     }
 }

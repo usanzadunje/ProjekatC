@@ -1,8 +1,55 @@
 <template>
-  <div>
+  <div class="w-full">
     <AppHead :title="place.name"/>
 
-    {{ place }}
+    <div
+        ref="card"
+        class="flex bg-white single-place-card mt-32 mx-auto shadow-lg rounded-3xl"
+    >
+      <div class="w-1/3 rounded-l-3xl hover:scale-125 test transition-transform duration-1000 cursor-pointer">
+        <img
+            :src="placeLogoPath(place.id)"
+            alt="Place logo image"
+            class="w-full h-full rounded-l-3xl object-fit object-cover"
+        >
+      </div>
+      <div class="w-2/3 rounded-r-3xl rounded-r-3xl">
+        <div class="flex flex-col justify-between h-full px-14 py-7 font-light">
+          <div>
+            <div class="flex justify-center">
+              <h1 class="text-primary-600 text-6xl">
+                {{ place.name }}
+              </h1>
+            </div>
+            <div class="flex items-center gap-6 text-2xl mt-16">
+              <i class="fas fa-map-marker-alt w-5"></i>
+              <span>{{ place.address }}</span>
+            </div>
+            <div class="mt-4 flex items-center gap-6 text-2xl">
+              <i class="fas fa-city w-5"></i>
+              <span>{{ place.city }}</span>
+            </div>
+          </div>
+          <div class="flex justify-end gap-2">
+            <Link
+                :href="route('regular.reservation.store')"
+                method="post"
+                as="button"
+                type="button"
+                class="bg-primary-600 hover:bg-primary-900 text-lg text-white font-light rounded-xl w-3/6 py-2.5"
+                :data="{place_id: place.id, reservation_date: todayISO()}"
+            >
+              Reserve
+            </Link>
+            <button
+                class="hover:bg-gray-300 text-lg text-black font-light rounded-xl w-3/6 py-2.5"
+            >
+              Contact
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,6 +60,9 @@ import route                         from 'ziggy';
 
 import AppHead from '@/Shared/AppHead.vue';
 import Layout  from '@/Shared/Layout.vue';
+
+import { placeLogoPath } from '@/utils/path';
+import { todayISO }      from '@/utils/date';
 
 import { Place } from '@/types';
 
@@ -30,8 +80,16 @@ export default defineComponent({
   },
   setup() {
     return {
+      /* Helpers */
       route,
+      placeLogoPath,
+      todayISO,
     };
   },
 });
 </script>
+<style>
+.test:hover {
+  transform: scale(1.25) rotate3d(0, 0, 1, 3deg);
+}
+</style>

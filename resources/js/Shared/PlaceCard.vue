@@ -10,7 +10,7 @@
       <span class="font-medium text-primary-600 hover:underline">{{ place.name }}</span>
     </div>
 
-    <div class="flex flex-col items-start text-gray-500 mt-5">
+    <div class="text-gray-500 mt-5 font-light">
       <div class="flex items-center gap-4">
         <i class="fas fa-map-marker-alt w-5 text-lg"></i>
         <span>{{ place.address }}</span>
@@ -22,12 +22,12 @@
     </div>
 
     <div class="mt-4 flex justify-end">
-      <div
-          class="bg-primary-600 hover:bg-primary-900 text-white rounded-full px-4 py-1"
-          @click="createReservation($event, route('regular.reservation.create', place.id))"
+      <button
+          class="bg-primary-600 hover:bg-primary-900 text-white font-light rounded-full px-4 py-1"
+          @click="createReservation"
       >
         Reserve
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -35,9 +35,12 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { Inertia }                   from '@inertiajs/inertia';
+import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 
 import PlaceLogo from '@/Shared/PlaceLogo.vue';
+
+import { todayISO } from '@/utils/date';
 
 import { Place } from '@/types';
 
@@ -45,6 +48,7 @@ export default defineComponent({
   name: 'PlaceCard',
   components: {
     PlaceLogo,
+    Link,
   },
   props: {
     place: {
@@ -52,12 +56,17 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props) {
     /* Event handlers */
-    const createReservation = (e: Event, route: string) => {
+    const createReservation = (e: Event) => {
       e.stopPropagation();
 
-      Inertia.get(route);
+      let routePath: string = route('regular.reservation.store');
+
+      Inertia.post(routePath, {
+        place_id: props.place.id as number,
+        reservation_date: todayISO(),
+      });
     };
     return {
       /* Component properties */
@@ -65,6 +74,9 @@ export default defineComponent({
 
       /* Event handlers */
       createReservation,
+
+      /* Helpers */
+      todayISO,
     };
   },
 });
