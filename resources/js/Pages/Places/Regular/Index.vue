@@ -9,12 +9,10 @@
         <div>
           SORT
         </div>
-        <div>
-          <AppSearchBox
-              css-classes="bg-white"
-              v-model="filter"
-          />
-        </div>
+        <AppSearchBox
+            css-classes="bg-white"
+            v-model="filter"
+        />
       </div>
       <div>
         grid/list view
@@ -32,7 +30,10 @@
         />
       </div>
 
-      <div class="relative flex justify-center mt-10 text-xl">
+      <div
+          v-show="places.prev_page_url || places.next_page_url"
+          class="relative flex justify-center mt-10 text-xl"
+      >
         <div>
           <Link
               :disabled="!places.prev_page_url"
@@ -76,7 +77,7 @@ import Layout       from '@/Shared/Layout.vue';
 import PlaceCard    from '@/Shared/PlaceCard.vue';
 import AppSearchBox from '@/Shared/AppSearchBox.vue';
 
-import { useDebouncedWatcher } from '@/composables/useDebouncedWatcher';
+import { useCustomWatchers } from '@/composables/useCustomWatchers';
 
 import { Place } from '@/types';
 
@@ -98,11 +99,21 @@ export default defineComponent({
     /* Component properties */
     const filter = ref<string>('');
 
-    const { debouncedWatch } = useDebouncedWatcher();
+    /* Composables */
+    const { throttleWatch } = useCustomWatchers();
 
-    debouncedWatch(filter, function() {
-      console.log(filter.value);
-    }, 1000);
+    /* Watchers */
+    throttleWatch(filter, function() {
+      Inertia.get(
+          route('regular.place.index'),
+          { filter: filter.value },
+          {
+            only: ['places'],
+            replace: true,
+            preserveState: true,
+          },
+      );
+    }, 600);
 
     return {
       /* Component properties */
