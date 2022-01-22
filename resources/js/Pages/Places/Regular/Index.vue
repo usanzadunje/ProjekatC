@@ -10,7 +10,7 @@
           SORT
         </div>
         <AppSearchBox
-            css-classes="bg-white"
+            css-classes="bg-white py-2.5 w-46"
             v-model="filter"
         />
       </div>
@@ -20,7 +20,7 @@
     </div>
 
     <div>
-      <div class="grid grid-cols-fit gap-8 mt-6 pb-8">
+      <div class="grid grid-cols-fit gap-5 mt-6 pb-8">
         <PlaceCard
             v-for="place in places.data"
             :key="place.id"

@@ -35,7 +35,7 @@
         </div>
         <AppLoadingButton
             :loading="form.processing"
-            class="bg-primary-600 w-full rounded-full mt-6 py-3 px-6 text-white font-medium"
+            class="bg-primary-600 hover:bg-primary-900 w-full rounded-full mt-6 py-3 px-6 text-white font-medium"
         >
           Login
         </AppLoadingButton>

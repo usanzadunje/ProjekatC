@@ -9,7 +9,7 @@
         :ref="global ? 'searchBox' : ''"
         type="search"
         placeholder="Search"
-        class="py-3 pl-9 pr-2 w-46 rounded-xl text-sm"
+        class="pl-9 pr-2 rounded-xl text-sm"
         :class="cssClasses"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"

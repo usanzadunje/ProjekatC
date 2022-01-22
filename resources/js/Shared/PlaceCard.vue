@@ -1,6 +1,6 @@
 <template>
   <div
-      class="bg-white rounded-xl h-60 w-full p-8"
+      class="relative bg-white rounded-xl h-60 w-full p-8"
   >
     <div class="flex items-center gap-4">
       <PlaceLogo
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="mt-4 flex justify-end">
+    <div class="absolute bottom-4 right-7">
       <button
           class="bg-primary-600 hover:bg-primary-900 text-white font-light rounded-full px-4 py-1"
           @click="createReservation"

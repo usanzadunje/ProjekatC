@@ -8,7 +8,7 @@
           :avatar="$page.props.auth.user.avatar"
           class="hidden xs:block"
       />
-      <AppDisplayName class="font-light"/>
+      <AppDisplayName class="font-normal"/>
       <i class="fas fa-chevron-down text-gray-400 ml-1"></i>
     </div>
     <div
