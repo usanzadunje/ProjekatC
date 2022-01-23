@@ -1,5 +1,6 @@
 <template>
   <div class="w-full py-5 px-6 flex justify-between items-center bg-white">
+    {{ auth.hasAnyRole(['staff', 'regular']) }}
     <div class="flex items-center">
       <div class="mr-6">
         <Link
@@ -63,7 +64,9 @@ import route                         from 'ziggy';
 import AppSearchBox    from '@/Shared/AppSearchBox.vue';
 import ProfileDropdown from '@/Shared/ProfileDropdown.vue';
 
-import { MenuLink } from '@/types';
+import { useAuth } from '@/composables/useAuth';
+
+import { MenuLink, Role } from '@/types';
 
 export default defineComponent({
   name: 'AppNav',
@@ -76,6 +79,7 @@ export default defineComponent({
   setup() {
     /* Component properties */
     const currentURL = computed<string>(() => usePage().url.value as string);
+
     const menu: MenuLink[] = [
       {
         name: 'Places',
@@ -97,6 +101,9 @@ export default defineComponent({
       },
     ];
 
+    /* Composables */
+    const { auth } = useAuth();
+
     /* Helpers */
     const isURL = (urls: string[]): Boolean => {
       const current: string = currentURL.value.substring(1);
@@ -112,15 +119,16 @@ export default defineComponent({
       return !!urls.filter(url => current.startsWith(url)).length;
     };
 
-
     return {
       /* Component properties */
       menu,
       Inertia,
+      auth,
 
       /* Helpers */
       route,
       isURL,
+      Role,
     };
   },
 });

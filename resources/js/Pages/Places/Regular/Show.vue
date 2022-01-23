@@ -6,7 +6,7 @@
         ref="card"
         class="flex bg-white single-place-card mt-32 mx-auto shadow-lg rounded-3xl"
     >
-      <div class="w-1/3 rounded-l-3xl hover:scale-125 transition-transform duration-1000 cursor-pointer">
+      <div class="w-1/3 rounded-l-3xl hover:scale-125 hover:rotate-3 transition-transform duration-1000 cursor-pointer">
         <img
             :src="placeLogoPath(place.id)"
             alt="Place logo image"

@@ -13,7 +13,7 @@ export function useCustomWatchers() {
      * but only when source stops changing, every change of source
      * forces callback to be delayed for new wait time.
      */
-    const debounceWatch = (source: object, callback: Function, wait: number) => {
+    const debounceWatch = (source: object, callback: Function, wait: number): void => {
         watch(source, () => {
             clearTimeout(debounceTimeout);
             debounceTimeout = setTimeout(() => {
@@ -27,7 +27,7 @@ export function useCustomWatchers() {
      * how many times source changes callback will be called exactly once
      * on each timespan.
      */
-    const throttleWatch = (source: object, callback: Function, every: number) => {
+    const throttleWatch = (source: object, callback: Function, every: number): void => {
         watch(source, () => {
             if(throttleTimeout) {
                 return;

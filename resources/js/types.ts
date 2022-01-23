@@ -26,7 +26,14 @@ export interface User {
     /**
      * User role
      */
-    role?: Role;
+    role_id?: Role;
+}
+
+export interface Auth {
+    /**
+     * Currently logged-in user or null if guest user
+     */
+    user?: User | null;
 }
 
 export interface Place {
@@ -79,7 +86,7 @@ export interface Reservation {
     place?: Place;
 }
 
-declare enum Role {
+export enum Role {
     /**
      * Indicates admin role
      */
