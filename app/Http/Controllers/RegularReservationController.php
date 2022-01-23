@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Reservation\CreateNewReservationAction;
-use App\Actions\Reservation\GetReservationsAction;
+use App\Actions\Reservation\GetRegularReservationsAction;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Place;
@@ -19,9 +19,10 @@ class RegularReservationController extends Controller
         $this->authorizeResource(Reservation::class, 'reservation');
     }
 
-    public function index(GetReservationsAction $getReservationsAction): InertiaResponse {
-        //$filter = request('filter') ?? '';
-        $reservations = $getReservationsAction->handle(auth()->user());
+    public function index(GetRegularReservationsAction $getRegularReservationsAction): InertiaResponse {
+        $filter = request('filter') ?? '';
+
+        $reservations = $getRegularReservationsAction->handle(auth()->user(), $filter);
 
         return Inertia::render('Reservations/Regular/Index', compact('reservations'));
     }

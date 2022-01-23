@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Excludable;
+use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -35,7 +36,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class Reservation extends Pivot
 {
-    use HasFactory, Excludable;
+    use HasFactory, Excludable, Filterable;
 
     /**
      * Indicates which table is being used for model.
