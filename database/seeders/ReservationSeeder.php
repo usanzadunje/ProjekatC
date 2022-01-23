@@ -17,15 +17,17 @@ class ReservationSeeder extends Seeder
      */
     public function run() {
         $regularUsers = User::where('role_id', Role::REGULAR)->get();
-        $places = Place::pluck('id');
+        $places = Place::where('id', '<', 10)->pluck('id');
 
-        $regularUsers->each(function(User $user) use ($places) {
-            $user
-                ->reservations()
-                ->attach(
-                    $places->random(),
-                    ['reservation_date' => Carbon::now()->addHours(rand(1, 1000))],
-                );
-        });
+        for($i = 0; $i < 10; $i++){
+            $regularUsers->each(function(User $user) use ($places) {
+                $user
+                    ->reservations()
+                    ->attach(
+                        $places->random(),
+                        ['reservation_date' => Carbon::now()->addHours(rand(1, 2000))],
+                    );
+            });
+        }
     }
 }
