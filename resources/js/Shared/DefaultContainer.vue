@@ -1,5 +1,5 @@
 <template>
-  <div class="px-8 pb-8">
+  <div>
     <AppHead :title="title"/>
 
     <h1 class="text-4xl font-semibold mt-10">{{ heading }}</h1>

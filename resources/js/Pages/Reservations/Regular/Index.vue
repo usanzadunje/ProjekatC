@@ -11,43 +11,66 @@
         },
         queries: filterQuery
       }"
+      class="px-8 pb-8"
       @filter-changed="fetchReservations"
   >
-    <div class="p-6  bg-indigo-300">
-      <div class="w-full ">
-        <table class="table-auto">
-          <thead>
-          <tr>
-            <th>Name:</th>
-            <th>Address:</th>
-            <th>Reservation Date:</th>
-            <th>Approved Date:</th>
-            <th>Submition Date:</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="reservation in reservations.data" :key="reservation.id">
-            <td class="px-4">{{ `${reservation.place_name}` }}</td>
-            <td class="px-4">{{ reservation.place_address }}</td>
-            <td class="px-4">{{ reservation.reservation_date }}</td>
-            <td class="px-4">{{ reservation.approved_at }}</td>
-            <td class="px-4">{{ reservation.created_at }}</td>
-            <td class="px-4">
-              <Link
-                  :href="route('regular.reservation.destroy', reservation.id)"
-                  method="delete"
-                  as="button"
-                  type="button"
-                  class="text-red-500 font-bold"
-              >
-                X
-              </Link>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+    <div class="flex flex-col gap-4 mt-6">
+      <div
+          v-for="reservation in reservations.data" :key="reservation.id"
+          class="px-12 pt-3 pb-6 bg-white rounded-xl h-28 cursor-pointer hover:scale-105"
+      >
+        <div class="flex justify-between h-full">
+          <div class="flex flex-col items-center gap-4 w-1/12">
+            <span class="font-medium text-primary-600">Place</span>
+            <span class="font-light break-all text-center">
+              {{ reservation.place_name }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center gap-4 w-1/6">
+            <span class="font-medium text-primary-600">Address</span>
+            <span class="font-light break-all text-center">
+              {{ reservation.place_address }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center gap-4 w-1/6">
+            <span class="font-medium text-primary-600">Reservation Date</span>
+            <span class="font-light break-all text-center">
+              {{ dayjs(reservation.reservation_date).format('DD.MM.YYYY') }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center gap-4 w-1/6">
+            <span class="font-medium text-primary-600">Requested Date</span>
+            <span class="font-light break-all text-center">
+              {{ dayjs(reservation.created_at).format('DD.MM.YYYY') }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center gap-4 w-1/6">
+            <span class="font-medium text-primary-600">Status</span>
+            <span class="font-light break-all text-center">
+              {{ reservation.approved_at ? 'approved' : 'not approved' }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center gap-4 w-1/12">
+            <span class="font-medium text-primary-600">Actions</span>
+            X
+          </div>
+        </div>
       </div>
     </div>
+    <!--            <th>Name:</th>-->
+    <!--            <th>Address:</th>-->
+    <!--            <th>Reservation Date:</th>-->
+    <!--            <th>Approved Date:</th>-->
+    <!--            <th>Submition Date:</th>-->
+    <!--      <Link-->
+    <!--          :href="route('regular.reservation.destroy', reservation.id)"-->
+    <!--          method="delete"-->
+    <!--          as="button"-->
+    <!--          type="button"-->
+    <!--          class="text-red-500 font-bold"-->
+    <!--      >-->
+    <!--        X-->
+    <!--      </Link>-->
   </DefaultContainer>
 </template>
 
@@ -56,6 +79,7 @@ import { defineComponent, ref }    from 'vue';
 import { Inertia, RequestPayload } from '@inertiajs/inertia';
 import { Link }                    from '@inertiajs/inertia-vue3';
 import route                       from 'ziggy';
+import * as dayjs                  from 'dayjs';
 
 import Layout           from '@/Shared/Layout.vue';
 import DefaultContainer from '@/Shared/DefaultContainer.vue';
@@ -100,6 +124,7 @@ export default defineComponent({
 
       /* Helpers */
       route,
+      dayjs,
     };
   },
 });

@@ -11,6 +11,7 @@
         },
         queries: filterQuery
       }"
+      class="px-8 pb-8"
       @filter-changed="fetchPlaces"
   >
     <div class="grid grid-cols-fit gap-5 mt-6 pb-8">
