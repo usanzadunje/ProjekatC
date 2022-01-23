@@ -6,7 +6,7 @@
         ref="card"
         class="flex bg-white single-place-card mt-32 mx-auto shadow-lg rounded-3xl"
     >
-      <div class="w-1/3 rounded-l-3xl hover:scale-125 test transition-transform duration-1000 cursor-pointer">
+      <div class="w-1/3 rounded-l-3xl hover:scale-125 transition-transform duration-1000 cursor-pointer">
         <img
             :src="placeLogoPath(place.id)"
             alt="Place logo image"
@@ -37,7 +37,7 @@
                 as="button"
                 type="button"
                 class="bg-primary-600 hover:bg-primary-900 text-lg text-white font-light rounded-xl w-3/6 py-2.5"
-                :data="{place_id: place.id, reservation_date: todayISO()}"
+                :data="{place_id: place.id, reservation_date: dayjs().add(getRandomInt(1, 365), 'day').toISOString()}"
             >
               Reserve
             </Link>
@@ -57,12 +57,13 @@
 import { defineComponent, PropType } from 'vue';
 import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
+import dayjs                         from 'dayjs';
 
 import AppHead from '@/Shared/AppHead.vue';
 import Layout  from '@/Shared/Layout.vue';
 
 import { placeLogoPath } from '@/utils/path';
-import { todayISO }      from '@/utils/date';
+import { getRandomInt }  from '@/utils/helpers';
 
 import { Place } from '@/types';
 
@@ -83,13 +84,11 @@ export default defineComponent({
       /* Helpers */
       route,
       placeLogoPath,
-      todayISO,
+      dayjs,
+      getRandomInt,
     };
   },
 });
 </script>
 <style>
-.test:hover {
-  transform: scale(1.25) rotate3d(0, 0, 1, 3deg);
-}
 </style>

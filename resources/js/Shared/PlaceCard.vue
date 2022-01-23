@@ -37,10 +37,11 @@ import { defineComponent, PropType } from 'vue';
 import { Inertia }                   from '@inertiajs/inertia';
 import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
+import dayjs                         from 'dayjs';
 
 import PlaceLogo from '@/Shared/PlaceLogo.vue';
 
-import { todayISO } from '@/utils/date';
+import { getRandomInt } from '@/utils/helpers';
 
 import { Place } from '@/types';
 
@@ -65,7 +66,7 @@ export default defineComponent({
 
       Inertia.post(routePath, {
         place_id: props.place.id as number,
-        reservation_date: todayISO(),
+        reservation_date: dayjs().add(getRandomInt(1, 365), 'day').toISOString(),
       });
     };
     return {
@@ -76,7 +77,6 @@ export default defineComponent({
       createReservation,
 
       /* Helpers */
-      todayISO,
     };
   },
 });

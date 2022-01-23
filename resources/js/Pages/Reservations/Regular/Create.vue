@@ -9,7 +9,7 @@
             as="button"
             type="button"
             class="mt-2 border border-black"
-            :data="{place_id: place.id, reservation_date: todayISO()}"
+            :data="{place_id: place.id, reservation_date: dayjs().add(getRandomInt(1, 365), 'day').toISOString()}"
         >
           Reserve
         </Link>
@@ -22,11 +22,12 @@
 import { defineComponent, PropType } from 'vue';
 import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
+import dayjs                         from 'dayjs';
 
 import AppHead from '@/Shared/AppHead.vue';
 import Layout  from '@/Shared/Layout.vue';
 
-import { todayISO } from '@/utils/date';
+import { getRandomInt } from '@/utils/helpers';
 
 import { Place } from '@/types';
 
@@ -45,8 +46,10 @@ export default defineComponent({
   setup() {
 
     return {
+      /* Helpers */
       route,
-      todayISO,
+      dayjs,
+      getRandomInt,
     };
   },
 });

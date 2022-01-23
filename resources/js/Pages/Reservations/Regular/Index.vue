@@ -14,7 +14,7 @@
       class="px-8 pb-8"
       @filter-changed="fetchReservations"
   >
-    <div class="flex flex-col gap-4 mt-6">
+    <div v-if="reservations.data.length > 0" class="flex flex-col gap-4 mt-6">
       <div
           v-for="reservation in reservations.data" :key="reservation.id"
           class="px-12 pt-3 pb-6 bg-white rounded-xl h-28 cursor-pointer hover:scale-105"
@@ -75,6 +75,9 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      You have no reservations yet.
+    </div>
   </DefaultContainer>
 </template>
 
@@ -83,7 +86,7 @@ import { defineComponent, ref }    from 'vue';
 import { Inertia, RequestPayload } from '@inertiajs/inertia';
 import { Link }                    from '@inertiajs/inertia-vue3';
 import route                       from 'ziggy';
-import * as dayjs                  from 'dayjs';
+import dayjs                       from 'dayjs';
 
 import Layout           from '@/Shared/Layout.vue';
 import DefaultContainer from '@/Shared/DefaultContainer.vue';
