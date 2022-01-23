@@ -20,6 +20,7 @@ class RegularReservationController extends Controller
     }
 
     public function index(GetReservationsAction $getReservationsAction): InertiaResponse {
+        //$filter = request('filter') ?? '';
         $reservations = $getReservationsAction->handle(auth()->user());
 
         return Inertia::render('Reservations/Regular/Index', compact('reservations'));

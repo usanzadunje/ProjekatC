@@ -13,7 +13,7 @@ class ReservationPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param \App\Models\User $user
+     * @param User $user
      * @return bool
      */
     public function viewAny(User $user): bool {
@@ -23,21 +23,18 @@ class ReservationPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Reservation $reservation
+     * @param User $user
+     * @param Reservation $reservation
      * @return bool
      */
     public function view(User $user, Reservation $reservation): bool {
-        $isAuthUserReservation = $user->id === $reservation->user_id;
-        $isReservationBelongingToStaffPlace = $user->place()->value('id') === $reservation->user_id;
-
-        return $isAuthUserReservation || $isReservationBelongingToStaffPlace;
+        return $this->isRegularReservationOrBelongsToStaffPlace($user, $reservation);
     }
 
     /**
      * Determine whether the user can create models.
      *
-     * @param \App\Models\User $user
+     * @param User $user
      * @return bool
      */
     public function create(User $user): bool {
@@ -47,50 +44,37 @@ class ReservationPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Reservation $reservation
+     * @param User $user
+     * @param Reservation $reservation
      * @return bool
      */
     public function update(User $user, Reservation $reservation): bool {
-        $isAuthUserReservation = $user->id === $reservation->user_id;
-        $isReservationBelongingToStaffPlace = $user->place()->value('id') === $reservation->user_id;
-
-        return $isAuthUserReservation || $isReservationBelongingToStaffPlace;
+        return $this->isRegularReservationOrBelongsToStaffPlace($user, $reservation);
     }
 
     /**
      * Determine whether the user can delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Reservation $reservation
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param User $user
+     * @param Reservation $reservation
+     * @return bool
      */
     public function delete(User $user, Reservation $reservation): bool {
-        $isAuthUserReservation = $user->id === $reservation->user_id;
+        return $this->isRegularReservationOrBelongsToStaffPlace($user, $reservation);
+    }
+
+    /**
+     * Checks whether reservation belongs to regular user or reservation is made for place that
+     * staff is working for
+     *
+     * @param User $user
+     * @param Reservation $reservation
+     * @return bool
+     */
+    private function isRegularReservationOrBelongsToStaffPlace(User $user, Reservation $reservation): bool {
+        $isRegularUserReservation = $user->id === $reservation->user_id;
         $isReservationBelongingToStaffPlace = $user->place()->value('id') === $reservation->place_id;
 
-        return $isAuthUserReservation || $isReservationBelongingToStaffPlace;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Reservation $reservation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Reservation $reservation) {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param \App\Models\User $user
-     * @param \App\Models\Reservation $reservation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Reservation $reservation) {
-        //
+        return $isRegularUserReservation || $isReservationBelongingToStaffPlace;
     }
 }
