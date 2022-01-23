@@ -112,3 +112,18 @@ export interface MenuLink {
      */
     icon?: string;
 }
+
+export interface Paginator {
+    /**
+     * Url to the first page of paginated results
+     */
+    first_page_url: string;
+    /**
+     * Url to next page of paginated results
+     */
+    next_page_url: string;
+    /**
+     * Url to previous page of paginated results
+     */
+    prev_page_url: string;
+}
