@@ -1,8 +1,18 @@
 <template>
-  <div>
-    <AppHead title="Users"/>
-    <h1 class="text-3xl text-red-500">Reservations Index</h1>
-
+  <DefaultContainer
+      title="Your reservations"
+      heading="Reservations"
+      :paginator="
+      {
+        pagination: {
+          prev_page_url: reservations.prev_page_url,
+          next_page_url: reservations.next_page_url,
+          first_page_url: route('regular.reservation.index')
+        },
+        queries: filterQuery
+      }"
+      @filter-changed="fetchReservations"
+  >
     <div class="p-6  bg-indigo-300">
       <div class="w-full ">
         <table class="table-auto">
@@ -38,27 +48,23 @@
         </table>
       </div>
     </div>
-    <AppPagination
-        :pagination="{prev_page_url: reservations.prev_page_url, next_page_url: reservations.next_page_url, first_page_url: route('regular.reservation.index')}"
-    />
-  </div>
+  </DefaultContainer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { Link }            from '@inertiajs/inertia-vue3';
-import route               from 'ziggy';
+import { defineComponent, ref }    from 'vue';
+import { Inertia, RequestPayload } from '@inertiajs/inertia';
+import { Link }                    from '@inertiajs/inertia-vue3';
+import route                       from 'ziggy';
 
-import AppHead       from '@/Shared/AppHead.vue';
-import Layout        from '@/Shared/Layout.vue';
-import AppPagination from '@/Shared/AppPagination.vue';
+import Layout           from '@/Shared/Layout.vue';
+import DefaultContainer from '@/Shared/DefaultContainer.vue';
 
 export default defineComponent({
   name: 'Reservations/Regular/Index',
   components: {
-    AppHead,
     Link,
-    AppPagination,
+    DefaultContainer,
   },
   layout: Layout,
   props: {
@@ -67,9 +73,35 @@ export default defineComponent({
     },
   },
   setup() {
+    /* Component properties */
+    const filterQuery = ref<RequestPayload>();
+
+    /* Event handlers */
+    const fetchReservations = (filter: string) => {
+      filterQuery.value = filter ? { filter } : {};
+
+      Inertia.get(
+          route('regular.reservation.index'),
+          filterQuery.value,
+          {
+            only: ['reservations'],
+            replace: true,
+            preserveState: true,
+          },
+      );
+    };
+
     return {
+      /* Component properties */
+      filterQuery,
+
+      /* Event handlers */
+      fetchReservations,
+
+      /* Helpers */
       route,
     };
   },
 });
+
 </script>

@@ -115,6 +115,17 @@ export interface MenuLink {
 
 export interface Paginator {
     /**
+     * Pagination object containing page urls
+     */
+    pagination: Pagination;
+    /**
+     * Query string attached to at the end of paginator urls
+     */
+    queries?: object;
+}
+
+export interface Pagination {
+    /**
      * Url to the first page of paginated results
      */
     first_page_url: string;

@@ -43,7 +43,7 @@
 import { defineComponent, PropType } from 'vue';
 import { Link }                      from '@inertiajs/inertia-vue3';
 
-import { Paginator } from '@/types';
+import { Pagination } from '@/types';
 
 export default defineComponent({
   name: 'AppPagination',
@@ -52,7 +52,7 @@ export default defineComponent({
   },
   props: {
     pagination: {
-      type: Object as PropType<Paginator>,
+      type: Object as PropType<Pagination>,
       required: true,
     },
     queries: {
