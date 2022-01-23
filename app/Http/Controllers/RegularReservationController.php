@@ -49,9 +49,9 @@ class RegularReservationController extends Controller
         //
     }
 
-    public function destroy(Reservation $reservation) {
+    public function destroy(Reservation $reservation): RedirectResponse {
         $reservation->delete();
 
-        return redirect()->route('regular.reservation.index');
+        return redirect()->back();
     }
 }

@@ -14,8 +14,13 @@
             v-model="filter"
         />
       </div>
-      <div>
-        grid/list view
+      <div class="flex gap-3">
+        <div>
+          grid/list view
+        </div>
+        <div>
+          <slot name="search-end"></slot>
+        </div>
       </div>
     </div>
 

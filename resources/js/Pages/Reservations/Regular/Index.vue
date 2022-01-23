@@ -18,6 +18,7 @@
       <div
           v-for="reservation in reservations.data" :key="reservation.id"
           class="px-12 pt-3 pb-6 bg-white rounded-xl h-28 cursor-pointer hover:scale-105"
+          @click="Inertia.get(route('regular.reservation.edit', reservation.id))"
       >
         <div class="flex justify-between h-full">
           <div class="flex flex-col items-center gap-4 w-1/12">
@@ -52,25 +53,28 @@
           </div>
           <div class="flex flex-col items-center gap-4 w-1/12">
             <span class="font-medium text-primary-600">Actions</span>
-            X
+            <div>
+              <Link
+                  :href="route('regular.reservation.edit', reservation.id)"
+                  as="button"
+                  type="button"
+                  class="text-white text-2xl bg-green-700 py-1 px-2 rounded-md hover:bg-green-600"
+              >
+                <i class="fas fa-edit"></i>
+              </Link>
+              <Link
+                  as="button"
+                  type="button"
+                  class="text-white text-2xl bg-red-600 py-1 px-2 rounded-md ml-2 hover:bg-red-500"
+                  @click="destroyReservation($event, reservation.id)"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!--            <th>Name:</th>-->
-    <!--            <th>Address:</th>-->
-    <!--            <th>Reservation Date:</th>-->
-    <!--            <th>Approved Date:</th>-->
-    <!--            <th>Submition Date:</th>-->
-    <!--      <Link-->
-    <!--          :href="route('regular.reservation.destroy', reservation.id)"-->
-    <!--          method="delete"-->
-    <!--          as="button"-->
-    <!--          type="button"-->
-    <!--          class="text-red-500 font-bold"-->
-    <!--      >-->
-    <!--        X-->
-    <!--      </Link>-->
   </DefaultContainer>
 </template>
 
@@ -114,6 +118,17 @@ export default defineComponent({
           },
       );
     };
+    const destroyReservation = (e: Event, reservationId: number) => {
+      e.stopPropagation();
+
+      Inertia.delete(
+          route('regular.reservation.destroy', reservationId),
+          {
+            only: ['reservations'],
+            replace: true,
+          },
+      );
+    };
 
     return {
       /* Component properties */
@@ -121,8 +136,10 @@ export default defineComponent({
 
       /* Event handlers */
       fetchReservations,
+      destroyReservation,
 
       /* Helpers */
+      Inertia,
       route,
       dayjs,
     };
