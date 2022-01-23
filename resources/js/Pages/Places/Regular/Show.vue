@@ -32,11 +32,13 @@
           </div>
           <div class="flex justify-end gap-2">
             <Link
+                :disabled="!auth.hasRole('regular')"
                 :href="route('regular.reservation.store')"
                 method="post"
                 as="button"
                 type="button"
-                class="bg-primary-600 hover:bg-primary-900 text-lg text-white font-light rounded-xl w-3/6 py-2.5"
+                class="bg-primary-600 text-lg text-white font-light rounded-xl w-3/6 py-2.5"
+                :class="auth.hasRole('regular') ? 'hover:bg-primary-900' : ''"
                 :data="{place_id: place.id, reservation_date: dayjs().add(getRandomInt(1, 365), 'day').toISOString()}"
             >
               Reserve
@@ -62,6 +64,8 @@ import dayjs                         from 'dayjs';
 import AppHead from '@/Shared/AppHead.vue';
 import Layout  from '@/Shared/Layout.vue';
 
+import { useAuth } from '@/composables/useAuth';
+
 import { placeLogoPath } from '@/utils/path';
 import { getRandomInt }  from '@/utils/helpers';
 
@@ -80,7 +84,13 @@ export default defineComponent({
     },
   },
   setup() {
+    /* Component properties */
+    const { auth } = useAuth();
+
     return {
+      /* Component properties */
+      auth,
+
       /* Helpers */
       route,
       placeLogoPath,

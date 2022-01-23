@@ -1,10 +1,9 @@
 <template>
   <div class="w-full py-5 px-6 flex justify-between items-center bg-white">
-    {{ auth.hasAnyRole(['staff', 'regular']) }}
     <div class="flex items-center">
       <div class="mr-6">
         <Link
-            :href="route('regular.place.index')"
+            :href="getHomeLink()"
             as="button" type="button"
             class="font-medium text-2xl hover:text-primary-100"
         >
@@ -34,7 +33,7 @@
         </div>
       </div>
     </div>
-    <ProfileDropdown v-if="$page.props.auth.user"/>
+    <ProfileDropdown v-if="auth.user"/>
     <div v-else>
       <Link
           :href="route('login')"
@@ -79,8 +78,45 @@ export default defineComponent({
   setup() {
     /* Component properties */
     const currentURL = computed<string>(() => usePage().url.value as string);
+    const { auth } = useAuth();
 
-    const menu: MenuLink[] = [
+    const guestMenu: MenuLink[] = [
+      {
+        name: 'Places',
+        route: 'regular.place.index',
+        matchedURLs: ['place'],
+        icon: 'fas fa-map-marked-alt',
+      },
+    ];
+    const adminMenu: MenuLink[] = [
+      {
+        name: 'Clients',
+        route: 'admin.client.index',
+        matchedURLs: ['admin/client'],
+        icon: 'fas fa-users',
+      },
+      {
+        name: 'Dashboard',
+        route: 'admin.dashboard',
+        matchedURLs: ['admin/dashboard'],
+        icon: 'fas fa-th-large',
+      },
+    ];
+    const staffMenu: MenuLink[] = [
+      {
+        name: 'Reservations',
+        route: 'staff.reservation.index',
+        matchedURLs: ['staff/reservation'],
+        icon: 'fab fa-rust',
+      },
+      {
+        name: 'Dashboard',
+        route: 'staff.dashboard',
+        matchedURLs: ['staff/dashboard'],
+        icon: 'fas fa-th-large',
+      },
+    ];
+    const regularMenu: MenuLink[] = [
       {
         name: 'Places',
         route: 'regular.place.index',
@@ -100,9 +136,39 @@ export default defineComponent({
         icon: 'fas fa-th-large',
       },
     ];
+    const getUserMenu = (): MenuLink[] => {
+      if(auth.hasRole('admin')) {
+        return adminMenu;
+      }
 
-    /* Composables */
-    const { auth } = useAuth();
+      if(auth.hasRole('staff')) {
+        return staffMenu;
+      }
+
+      if(auth.hasRole('regular')) {
+        return regularMenu;
+      }
+
+      return guestMenu;
+    };
+    const getHomeLink = (): string => {
+      if(auth.hasRole('admin')) {
+        return route('admin.dashboard');
+      }
+
+      if(auth.hasRole('staff')) {
+        return route('staff.dashboard');
+      }
+
+      if(auth.hasRole('regular')) {
+        return route('regular.place.index');
+      }
+
+      return route('regular.place.index');
+    };
+
+    // Main menu which is displayed
+    const menu: MenuLink[] = getUserMenu();
 
     /* Helpers */
     const isURL = (urls: string[]): Boolean => {
@@ -129,6 +195,7 @@ export default defineComponent({
       route,
       isURL,
       Role,
+      getHomeLink,
     };
   },
 });

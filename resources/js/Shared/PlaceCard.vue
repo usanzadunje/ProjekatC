@@ -23,7 +23,9 @@
 
     <div class="absolute bottom-4 right-7">
       <button
-          class="bg-primary-600 hover:bg-primary-900 text-white font-light rounded-full px-4 py-1"
+          :disabled="!auth.hasRole('regular')"
+          class="bg-primary-600 text-white font-light rounded-full px-4 py-1"
+          :class="auth.hasRole('regular') ? 'hover:bg-primary-900' : ''"
           @click="createReservation"
       >
         Reserve
@@ -40,6 +42,8 @@ import route                         from 'ziggy';
 import dayjs                         from 'dayjs';
 
 import PlaceLogo from '@/Shared/PlaceLogo.vue';
+
+import { useAuth } from '@/composables/useAuth';
 
 import { getRandomInt } from '@/utils/helpers';
 
@@ -58,6 +62,9 @@ export default defineComponent({
     },
   },
   setup(props) {
+    /* Component properties */
+    const { auth } = useAuth();
+
     /* Event handlers */
     const createReservation = (e: Event) => {
       e.stopPropagation();
@@ -72,6 +79,7 @@ export default defineComponent({
     return {
       /* Component properties */
       route,
+      auth,
 
       /* Event handlers */
       createReservation,

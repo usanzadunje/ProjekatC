@@ -5,7 +5,7 @@
         @click="hideDropdown"
     >
       <AppAvatar
-          :avatar="$page.props.auth.user.avatar"
+          :avatar="auth.user.avatar"
           class="hidden xs:block"
       />
       <AppDisplayName class="font-normal"/>
@@ -44,7 +44,10 @@ import route                    from 'ziggy';
 
 import AppAvatar      from '@/Shared/AppAvatar.vue';
 import AppDisplayName from '@/Shared/AppDisplayName.vue';
-import { MenuLink }   from '@/types';
+
+import { useAuth } from '@/composables/useAuth';
+
+import { MenuLink } from '@/types';
 
 export default defineComponent({
   name: 'ProfileDropdown',
@@ -58,7 +61,37 @@ export default defineComponent({
     /* Component properties */
     const showDropdown = ref<Boolean>(false);
     const dropdown = ref();
-    const menu: MenuLink[] = [
+    const { auth } = useAuth();
+
+    const adminDropdownMenu: MenuLink[] = [
+      {
+        name: 'Dashboard',
+        route: 'regular.dashboard',
+      },
+      {
+        name: 'Clients',
+        route: 'admin.client.index',
+      },
+      {
+        name: 'Settings',
+        route: 'admin.dashboard',
+      },
+    ];
+    const staffDropdownMenu: MenuLink[] = [
+      {
+        name: 'Dashboard',
+        route: 'staff.dashboard',
+      },
+      {
+        name: 'Reservations',
+        route: 'staff.reservation.index',
+      },
+      {
+        name: 'Settings',
+        route: 'staff.dashboard',
+      },
+    ];
+    const regularDropdownMenu: MenuLink[] = [
       {
         name: 'Dashboard',
         route: 'regular.dashboard',
@@ -72,6 +105,22 @@ export default defineComponent({
         route: 'regular.dashboard',
       },
     ];
+    const getUserDropdownMenu = (): MenuLink[] => {
+      if(auth.hasRole('admin')) {
+        return adminDropdownMenu;
+      }
+
+      if(auth.hasRole('staff')) {
+        return staffDropdownMenu;
+      }
+
+      if(auth.hasRole('regular')) {
+        return regularDropdownMenu;
+      }
+
+      return [];
+    };
+    const menu: MenuLink[] = getUserDropdownMenu();
 
     /* Event handlers */
     // Making sure to close dropdown no matter where user clicks on page
@@ -93,6 +142,7 @@ export default defineComponent({
       showDropdown,
       dropdown,
       menu,
+      auth,
 
       /* Event handlers */
       hideDropdown,
