@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Place;
+use App\Models\Reservation;
 use App\Models\Role;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class ReservationSeeder extends Seeder
@@ -19,15 +19,17 @@ class ReservationSeeder extends Seeder
         $regularUsers = User::where('role_id', Role::REGULAR)->get();
         $places = Place::where('id', '<', 10)->pluck('id');
 
-        for($i = 0; $i < 10; $i++){
-            $regularUsers->each(function(User $user) use ($places) {
+        $regularUsers->each(function(User $user) use ($places) {
+            $reservations = Reservation::factory(10)->make()->toArray();
+
+            foreach($reservations as $reservation){
                 $user
                     ->reservations()
                     ->attach(
                         $places->random(),
-                        ['reservation_date' => Carbon::now()->addHours(rand(1, 2000))],
+                        $reservation
                     );
-            });
-        }
+            }
+        });
     }
 }

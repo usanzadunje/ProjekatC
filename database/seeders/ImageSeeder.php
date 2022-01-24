@@ -24,7 +24,7 @@ class ImageSeeder extends Seeder
      */
     public function run() {
         // Generating random images for each place
-        $places = Place::where('id', '<', 10)->pluck('id');
+        $places = Place::pluck('id');
 
         foreach($places as $id){
             $placeImgPath = "img/places/$id";

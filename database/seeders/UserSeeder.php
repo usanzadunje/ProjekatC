@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
         ])[0];
 
-        User::factory(50)->staff()->hasPlace()->create();
+        User::factory(13)->staff()->hasPlace()->create();
 
         User::factory(1)->withAvatar()->regular()->create([
             'first_name' => 'Regular',
