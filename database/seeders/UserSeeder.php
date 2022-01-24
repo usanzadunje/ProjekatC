@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
@@ -14,14 +15,14 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run() {
-        User::factory(1)->withAvatar()->admin()->create([
+        $admin = User::factory(1)->withAvatar()->admin()->create([
             'first_name' => 'Dusan',
             'last_name' => 'Djordjevic',
             'username' => 'admin',
             'email' => 'admin@admin.com',
-        ]);
+        ])[0];
 
-        User::factory(50)->withAvatar()->staff()->hasPlace()->create();
+        User::factory(50)->staff()->hasPlace()->create();
 
         User::factory(1)->withAvatar()->regular()->create([
             'first_name' => 'Regular',
@@ -30,6 +31,9 @@ class UserSeeder extends Seeder
             'email' => 'regular@regular.com',
         ]);
 
-        User::factory(4)->withAvatar()->create();
+        User::factory(4)->create();
+
+        // Generating default avatar.png image
+        Storage::disk('public')->copy("img/avatars/$admin->avatar", "img/avatars/avatar.png");
     }
 }

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run() {
+        // Removing all images and regenerating folder they reside in
         Storage::disk('public')->deleteDirectory('img');
         Storage::disk('public')->makeDirectory('img/avatars');
         Storage::disk('public')->makeDirectory('img/places');
