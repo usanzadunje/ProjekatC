@@ -31,18 +31,10 @@
             </div>
           </div>
           <div class="flex justify-end gap-2">
-            <Link
-                :disabled="!auth.hasRole('regular')"
-                :href="route('regular.reservation.store')"
-                method="post"
-                as="button"
-                type="button"
-                class="bg-primary-600 text-lg text-white font-light rounded-xl w-3/6 py-2.5"
-                :class="auth.hasRole('regular') ? 'hover:bg-primary-900' : ''"
-                :data="{place_id: place.id, reservation_date: dayjs().add(getRandomInt(1, 365), 'day').toISOString()}"
-            >
-              Reserve
-            </Link>
+            <AppReservationButton
+                cssClass="text-lg font-light rounded-xl w-3/6 py-2.5"
+                @click="openModal(true, place)"
+            />
             <button
                 class="hover:bg-gray-300 text-lg text-black font-light rounded-xl w-3/6 py-2.5"
             >
@@ -53,18 +45,29 @@
       </div>
     </div>
   </div>
+  <AppModal
+      :is-open="isOpen"
+      @dismiss="openModal(false)"
+  >
+    <ReservationStoreUpdateModal
+        :place="modalData"
+        @dismiss-modal="openModal(false)"
+    />
+  </AppModal>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 import dayjs                         from 'dayjs';
 
-import AppHead from '@/Shared/AppHead.vue';
-import Layout  from '@/Shared/Layout.vue';
+import AppHead                     from '@/Shared/AppHead.vue';
+import AppReservationButton        from '@/Shared/AppReservationButton.vue';
+import AppModal                    from '@/Shared/AppModal.vue';
+import ReservationStoreUpdateModal from '@/Shared/ReservationStoreUpdateModal.vue';
+import Layout                      from '@/Shared/Layout.vue';
 
-import { useAuth } from '@/composables/useAuth';
+import useModal from '@/composables/useModal';
 
 import { placeLogoPath } from '@/utils/path';
 import { getRandomInt }  from '@/utils/helpers';
@@ -75,7 +78,9 @@ export default defineComponent({
   name: 'Places/Regular/Show',
   components: {
     AppHead,
-    Link,
+    AppReservationButton,
+    AppModal,
+    ReservationStoreUpdateModal,
   },
   layout: Layout,
   props: {
@@ -84,12 +89,16 @@ export default defineComponent({
     },
   },
   setup() {
-    /* Component properties */
-    const { auth } = useAuth();
+    /* Composables */
+    const { isOpen, openModal, modalData } = useModal();
 
     return {
       /* Component properties */
-      auth,
+      isOpen,
+      modalData,
+
+      /* Event handlers */
+      openModal,
 
       /* Helpers */
       route,

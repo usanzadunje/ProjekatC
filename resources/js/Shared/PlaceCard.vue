@@ -22,14 +22,10 @@
     </div>
 
     <div class="absolute bottom-4 right-7">
-      <button
-          :disabled="!auth.hasRole('regular')"
-          class="bg-primary-600 text-white font-light rounded-full px-4 py-1"
-          :class="auth.hasRole('regular') ? 'hover:bg-primary-900' : ''"
-          @click="createReservation"
-      >
-        Reserve
-      </button>
+      <AppReservationButton
+          cssClass="font-light rounded-full px-4 py-1"
+          @click="$event.stopPropagation();$emit('openReservationModal')"
+      />
     </div>
   </div>
 </template>
@@ -41,9 +37,8 @@ import { Link }                      from '@inertiajs/inertia-vue3';
 import route                         from 'ziggy';
 import dayjs                         from 'dayjs';
 
-import PlaceLogo from '@/Shared/PlaceLogo.vue';
-
-import { useAuth } from '@/composables/useAuth';
+import PlaceLogo            from '@/Shared/PlaceLogo.vue';
+import AppReservationButton from '@/Shared/AppReservationButton.vue';
 
 import { getRandomInt } from '@/utils/helpers';
 
@@ -53,8 +48,10 @@ export default defineComponent({
   name: 'PlaceCard',
   components: {
     PlaceLogo,
+    AppReservationButton,
     Link,
   },
+  emits: ['openReservationModal'],
   props: {
     place: {
       type: Object as PropType<Place>,
@@ -63,7 +60,6 @@ export default defineComponent({
   },
   setup(props) {
     /* Component properties */
-    const { auth } = useAuth();
 
     /* Event handlers */
     const createReservation = (e: Event) => {
@@ -79,7 +75,6 @@ export default defineComponent({
     return {
       /* Component properties */
       route,
-      auth,
 
       /* Event handlers */
       createReservation,

@@ -63,7 +63,7 @@ import route                         from 'ziggy';
 import AppSearchBox    from '@/Shared/AppSearchBox.vue';
 import ProfileDropdown from '@/Shared/ProfileDropdown.vue';
 
-import { useAuth } from '@/composables/useAuth';
+import useAuth from '@/composables/useAuth';
 
 import { MenuLink, Role } from '@/types';
 

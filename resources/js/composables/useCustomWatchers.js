@@ -1,5 +1,5 @@
 import { watch } from 'vue';
-export function useCustomWatchers() {
+export default function useCustomWatchers() {
     let debounceTimeout;
     let throttleTimeout;
     const debounceWatch = (source, callback, wait) => {

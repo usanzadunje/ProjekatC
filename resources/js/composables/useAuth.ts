@@ -6,7 +6,7 @@ import { usePage }            from '@inertiajs/inertia-vue3';
 
 import { User, Role } from '@/types';
 
-export function useAuth() {
+export default function useAuth() {
     const authProp = computed(() => usePage().props.value.auth);
 
     /**

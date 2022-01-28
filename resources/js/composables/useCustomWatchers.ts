@@ -4,7 +4,7 @@
  */
 import { watch } from 'vue';
 
-export function useCustomWatchers() {
+export default function useCustomWatchers() {
     let debounceTimeout: number;
     let throttleTimeout: number | undefined;
 

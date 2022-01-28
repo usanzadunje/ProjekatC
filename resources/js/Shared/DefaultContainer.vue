@@ -42,7 +42,7 @@ import AppHead       from '@/Shared/AppHead.vue';
 import AppSearchBox  from '@/Shared/AppSearchBox.vue';
 import AppPagination from '@/Shared/AppPagination.vue';
 
-import { useCustomWatchers } from '@/composables/useCustomWatchers';
+import useCustomWatchers from '@/composables/useCustomWatchers';
 
 import { Paginator } from '@/types';
 

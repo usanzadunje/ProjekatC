@@ -45,7 +45,7 @@ import route                    from 'ziggy';
 import AppAvatar      from '@/Shared/AppAvatar.vue';
 import AppDisplayName from '@/Shared/AppDisplayName.vue';
 
-import { useAuth } from '@/composables/useAuth';
+import useAuth from '@/composables/useAuth';
 
 import { MenuLink } from '@/types';
 

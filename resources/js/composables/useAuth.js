@@ -1,7 +1,7 @@
 import { computed, reactive } from 'vue';
 import { usePage } from '@inertiajs/inertia-vue3';
 import { Role } from '@/types';
-export function useAuth() {
+export default function useAuth() {
     const authProp = computed(() => usePage().props.value.auth);
     const hasRole = (role) => {
         if (typeof role === 'string') {
