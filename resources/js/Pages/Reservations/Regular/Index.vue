@@ -18,7 +18,7 @@
       <div
           v-for="reservation in reservations.data" :key="reservation.id"
           class="px-12 pt-3 pb-6 bg-white rounded-xl h-28 cursor-pointer hover:scale-105"
-          @click="Inertia.get(route('regular.reservation.edit', reservation.id))"
+          @click=""
       >
         <div class="flex justify-between h-full">
           <div class="flex flex-col items-center gap-4 w-1/12">
@@ -55,7 +55,6 @@
             <span class="font-medium text-primary-600">Actions</span>
             <div>
               <Link
-                  :href="route('regular.reservation.edit', reservation.id)"
                   as="button"
                   type="button"
                   class="text-white text-2xl bg-green-700 py-1 px-2 rounded-md hover:bg-green-600"

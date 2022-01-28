@@ -4,28 +4,28 @@
       <span>{{ label }}</span>
       <span v-if="required" class="text-md text-primary-600 font-semibold">*</span>
     </label>
-    <input
+    <textarea
         ref="input"
         :id="id"
-        class="border border-gray-200 rounded-full mt-2 px-6 py-2 text-primary-600 font-normal"
+        class="border border-gray-200 rounded-xl mt-2 px-6 py-3 text-primary-600 font-normal"
         :class="{ 'border-red-400': error }"
-        :type="type"
         :placeholder="placeholder"
+        :rows="rows"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         @focus="$emit('focus')"
     />
     <slot></slot>
-    <div v-if="error" class="text-red-500 break-all">{{ error }}</div>
+    <div v-if="error" class="text-red-500">{{ error }}</div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 
 import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
-  name: 'AppInput',
+  name: 'AppTextarea',
   components: {},
   emits: ['focus', 'update:modelValue'],
   props: {
@@ -50,6 +50,9 @@ export default defineComponent({
     },
     autofocus: {
       type: Boolean,
+    },
+    rows: {
+      type: Number,
     },
     error: {
       type: String,

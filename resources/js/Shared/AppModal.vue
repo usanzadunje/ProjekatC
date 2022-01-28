@@ -29,6 +29,7 @@ export default defineComponent({
   emits: ['dismiss'],
   setup() {
     /* Component properties */
+
     /* Event handlers */
     return {
       /* Component properties */
@@ -39,7 +40,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -48,5 +49,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%
 }
 </style>

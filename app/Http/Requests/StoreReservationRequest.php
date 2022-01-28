@@ -38,6 +38,22 @@ class StoreReservationRequest extends FormRequest
                 'date',
                 Rule::unique(Reservation::class),
             ],
+            'number_of_guests' => [
+                'required',
+                'numeric',
+                'integer',
+                'max:3000',
+            ],
+            'occasion' => [
+                'required',
+                'string',
+                'max:100',
+            ],
+            'additional_requirements' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
         ];
     }
 }
