@@ -60,11 +60,15 @@
           <div class="flex flex-col items-center gap-4 w-1/12">
             <span class="font-medium text-primary-600">Actions</span>
             <div>
-              <span
+              <Link
+                  :href="route('regular.reservation.edit', [reservation.placeId, reservation.id])"
+                  as="button"
+                  type="button"
                   class="text-white text-2xl bg-green-700 py-1 px-2 rounded-md hover:bg-green-600"
+                  @click="$event.stopPropagation()"
               >
                 <i class="fas fa-edit"></i>
-              </span>
+              </Link>
               <Link
                   as="button"
                   type="button"

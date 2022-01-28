@@ -12,7 +12,7 @@ class GetRegularReservationsAction
         return Reservation::select([
             'reservations.id', 'reservations.reservation_date', 'reservations.approved_at', 'reservations.created_at', 'reservations.place_id',
             'reservations.number_of_guests',
-            'places.id as place_id', 'places.name as place_name', 'places.address as place_address',
+            'places.id as placeId', 'places.name as place_name', 'places.address as place_address',
         ])
             ->join('places', 'places.id', '=', 'reservations.place_id')
             ->where('reservations.user_id', $user->id)

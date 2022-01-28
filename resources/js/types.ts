@@ -110,11 +110,11 @@ export interface Reservation {
     // place?: Place;
 }
 
-export interface RegularReservation extends Reservation{
+export interface RegularReservation extends Reservation {
     /**
      * ID of the place reservation is for
      */
-    place_id?: number;
+    placeId?: number;
     /**
      * Name of the place user asked for reservation
      */
@@ -125,11 +125,11 @@ export interface RegularReservation extends Reservation{
     place_address?: string;
 }
 
-export interface StaffReservation extends Reservation{
+export interface StaffReservation extends Reservation {
     /**
      * ID of the user which asked for reservation
      */
-    user_id: number;
+    userId: number;
     /**
      * First name of the user which asked for reservation
      */

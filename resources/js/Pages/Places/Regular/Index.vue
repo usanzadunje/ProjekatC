@@ -31,9 +31,9 @@ import { defineComponent, ref }    from 'vue';
 import { Inertia, RequestPayload } from '@inertiajs/inertia';
 import route                       from 'ziggy';
 
-import Layout                      from '@/Shared/Layout.vue';
-import DefaultContainer            from '@/Shared/DefaultContainer.vue';
-import PlaceCard                   from '@/Shared/PlaceCard.vue';
+import Layout           from '@/Shared/Layout.vue';
+import DefaultContainer from '@/Shared/DefaultContainer.vue';
+import PlaceCard        from '@/Shared/PlaceCard.vue';
 
 export default defineComponent({
   name: 'Places/Regular/Index',
