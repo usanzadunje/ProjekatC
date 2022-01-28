@@ -6,6 +6,7 @@ use App\Traits\Excludable;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -82,5 +83,16 @@ class Reservation extends Pivot
     public function place(): BelongsTo {
         return $this->belongsTo(Place::class)
             ->select('id', 'name', 'address');
+    }
+
+    public function offers(): BelongsToMany {
+        return $this
+            ->belongsToMany(
+                Offer::class, 'offer_reservation',
+                'reservation_id','offer_id',
+            )
+            ->using(OfferReservation::class)
+            ->as('requests')
+            ->withPivot('id', 'additional_requirements');
     }
 }

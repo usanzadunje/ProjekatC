@@ -2,12 +2,40 @@
 
 namespace Database\Factories;
 
+use App\Models\Offer;
+use App\Models\OfferReservation;
+use App\Models\Place;
+use App\Models\Reservation;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+    /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure() {
+        return $this->afterCreating(function(User $user) {
+            if($user->hasRole('regular')) {
+                $places = Place::where('id', '<', 10)->pluck('id');
+                $reservations = Reservation::factory(5)->make()->toArray();
+
+                foreach($reservations as $reservation){
+                    $user
+                        ->reservations()
+                        ->attach(
+                            $places->random(),
+                            $reservation
+                        );
+                }
+            }
+        });
+    }
+
     /**
      * Define the model's default state.
      *

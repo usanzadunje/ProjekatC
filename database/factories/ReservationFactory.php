@@ -2,11 +2,15 @@
 
 namespace Database\Factories;
 
+use App\Models\Offer;
+use App\Models\OfferReservation;
+use App\Models\Place;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReservationFactory extends Factory
 {
-    /**
+      /**
      * Define the model's default state.
      *
      * @return array
