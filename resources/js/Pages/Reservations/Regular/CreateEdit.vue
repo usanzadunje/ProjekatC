@@ -1,12 +1,12 @@
 <template>
   <div class="flex justify-center items-center">
-    <div class="w-1/3 bg-primary-paint-300 rounded-xl p-10">
-      <h2 class="text-3xl text-center">
+    <div class="w-1/2 bg-primary-paint-300 rounded-xl p-10">
+      <h2 class="text-4xl font-medium text-center">
         {{ place.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
       </h2>
       <form
           @submit.prevent="storeOrUpdateReservation"
-          class="px-16"
+          class="px-16 mt-16"
       >
         <AppInput
             :required="true"
@@ -36,7 +36,7 @@
             :error="form.errors.additional_requirements"
             placeholder="Your custom requirements..."
             class="mt-4"
-            :rows="5"
+            :rows="10"
             @focus="form.clearErrors('additional_requirements')"
         />
         <AppLoadingButton
@@ -62,7 +62,7 @@ import AppLoadingButton from '@/Shared/AppLoadingButton.vue';
 import { Place }        from '@/types';
 
 export default defineComponent({
-  name: 'Reservations/Regular/Create',
+  name: 'Reservations/Regular/CreateEdit',
   components: {
     AppInput,
     AppTextarea,
@@ -89,7 +89,6 @@ export default defineComponent({
     /* Lifecycle hooks */
     onMounted(() => {
       const placeInternal: Place = place.value as Place;
-      console.log(place.value.reservation);
 
       if(placeInternal.reservation) {
         form.reservation_date = placeInternal.reservation.reservation_date;

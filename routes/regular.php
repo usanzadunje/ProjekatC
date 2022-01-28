@@ -22,4 +22,11 @@ Route::controller(RegularPlaceController::class)
     });
 
 // Reservation based routes
-Route::resource('reservation', RegularReservationController::class);
+Route::controller(RegularReservationController::class)
+    ->as('reservation.')
+    ->group(function() {
+        Route::get('/place/{place}/reservation/create', 'create')->name('create');
+        Route::get('/place/{place}/reservation/{reservation}/edit', 'edit')->name('edit');
+    });
+Route::resource('reservation', RegularReservationController::class)
+    ->except('create', 'edit');

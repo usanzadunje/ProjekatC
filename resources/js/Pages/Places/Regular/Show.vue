@@ -33,7 +33,7 @@
           <div class="flex justify-end gap-2">
             <AppReservationButton
                 cssClass="text-lg font-light rounded-xl w-3/6 py-2.5"
-                @click="Inertia.get(route('regular.reservation.create'))"
+                @click="Inertia.get(route('regular.reservation.create', place.id))"
             />
             <button
                 class="hover:bg-gray-300 text-lg text-black font-light rounded-xl w-3/6 py-2.5"

@@ -24,7 +24,7 @@
     <div class="absolute bottom-4 right-7">
       <AppReservationButton
           cssClass="font-light rounded-full px-4 py-1"
-          @click="$event.stopPropagation();Inertia.get(route('regular.reservation.create'))"
+          @click="$event.stopPropagation();Inertia.get(route('regular.reservation.create', place.id))"
       />
     </div>
   </div>
