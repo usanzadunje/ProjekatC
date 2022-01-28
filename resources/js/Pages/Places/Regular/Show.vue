@@ -33,7 +33,7 @@
           <div class="flex justify-end gap-2">
             <AppReservationButton
                 cssClass="text-lg font-light rounded-xl w-3/6 py-2.5"
-                @click="openModal(true, place)"
+                @click="Inertia.get(route('regular.reservation.create'))"
             />
             <button
                 class="hover:bg-gray-300 text-lg text-black font-light rounded-xl w-3/6 py-2.5"
@@ -45,29 +45,17 @@
       </div>
     </div>
   </div>
-  <AppModal
-      :is-open="isOpen"
-      @dismiss="openModal(false)"
-  >
-    <ReservationStoreUpdateModal
-        :place="modalData"
-        @dismiss-modal="openModal(false)"
-    />
-  </AppModal>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { Inertia }                   from '@inertiajs/inertia';
 import route                         from 'ziggy';
 import dayjs                         from 'dayjs';
 
-import AppHead                     from '@/Shared/AppHead.vue';
-import AppReservationButton        from '@/Shared/AppReservationButton.vue';
-import AppModal                    from '@/Shared/AppModal.vue';
-import ReservationStoreUpdateModal from '@/Shared/ReservationStoreUpdateModal.vue';
-import Layout                      from '@/Shared/Layout.vue';
-
-import useModal from '@/composables/useModal';
+import AppHead              from '@/Shared/AppHead.vue';
+import AppReservationButton from '@/Shared/AppReservationButton.vue';
+import Layout               from '@/Shared/Layout.vue';
 
 import { placeLogoPath } from '@/utils/path';
 import { getRandomInt }  from '@/utils/helpers';
@@ -79,8 +67,6 @@ export default defineComponent({
   components: {
     AppHead,
     AppReservationButton,
-    AppModal,
-    ReservationStoreUpdateModal,
   },
   layout: Layout,
   props: {
@@ -90,17 +76,14 @@ export default defineComponent({
   },
   setup() {
     /* Composables */
-    const { isOpen, openModal, modalData } = useModal();
 
     return {
       /* Component properties */
-      isOpen,
-      modalData,
 
       /* Event handlers */
-      openModal,
 
       /* Helpers */
+      Inertia,
       route,
       placeLogoPath,
       dayjs,

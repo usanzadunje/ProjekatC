@@ -21,19 +21,9 @@
           :place="place"
           class="cursor-pointer hover:scale-95 hover:shadow-md"
           @click="Inertia.get(route('regular.place.show', place.id))"
-          @open-reservation-modal="openModal(true, place)"
       />
     </div>
   </DefaultContainer>
-  <AppModal
-      :is-open="isOpen"
-      @dismiss="openModal(false)"
-  >
-    <ReservationStoreUpdateModal
-        :place="modalData"
-        @dismiss-modal="openModal(false)"
-    />
-  </AppModal>
 </template>
 
 <script lang="ts">
@@ -41,21 +31,15 @@ import { defineComponent, ref }    from 'vue';
 import { Inertia, RequestPayload } from '@inertiajs/inertia';
 import route                       from 'ziggy';
 
-import useModal from '@/composables/useModal';
-
 import Layout                      from '@/Shared/Layout.vue';
 import DefaultContainer            from '@/Shared/DefaultContainer.vue';
 import PlaceCard                   from '@/Shared/PlaceCard.vue';
-import AppModal                    from '@/Shared/AppModal.vue';
-import ReservationStoreUpdateModal from '@/Shared/ReservationStoreUpdateModal.vue';
 
 export default defineComponent({
   name: 'Places/Regular/Index',
   components: {
     DefaultContainer,
     PlaceCard,
-    AppModal,
-    ReservationStoreUpdateModal,
   },
   layout: Layout,
   props: {
@@ -68,7 +52,6 @@ export default defineComponent({
     const filterQuery = ref<RequestPayload>();
 
     /* Composables */
-    const { isOpen, openModal, modalData } = useModal();
 
     /* Event handlers */
     const fetchPlaces = (filter: string) => {
@@ -88,12 +71,9 @@ export default defineComponent({
     return {
       /* Component properties */
       filterQuery,
-      isOpen,
-      modalData,
 
       /* Component properties */
       fetchPlaces,
-      openModal,
 
       /* Helpers */
       Inertia,

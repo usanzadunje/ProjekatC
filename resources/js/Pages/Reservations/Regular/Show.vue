@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center">
+  <div class="h-78 w-screen flex justify-center items-center">
     <div class="w-1/3 bg-primary-paint-300 rounded-xl p-10">
       <h2 class="text-3xl text-center">
         {{ place.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
@@ -62,7 +62,7 @@ import AppLoadingButton from '@/Shared/AppLoadingButton.vue';
 import { Place }        from '@/types';
 
 export default defineComponent({
-  name: 'Reservations/Regular/Create',
+  name: 'Reservations/Regular/Show',
   components: {
     AppInput,
     AppTextarea,

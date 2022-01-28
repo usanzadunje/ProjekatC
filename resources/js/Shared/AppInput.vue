@@ -58,11 +58,14 @@ export default defineComponent({
       type: String,
     },
   },
-  setup() {
+  setup(props) {
     const input = ref();
 
     onMounted(() => {
-      input.value.focus();
+      // @ts-ignore
+      if(props.autofocus) {
+        input.value.focus();
+      }
     });
     return {
       input,

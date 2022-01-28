@@ -1,3 +1,7 @@
+export type RecursivePartial<T> = {
+    [P in keyof T]?: RecursivePartial<T[P]>;
+};
+
 export interface User {
     /**
      * User ID
@@ -57,6 +61,11 @@ export interface Place {
      * ID of the user this place belongs to (owner of the place)
      */
     user_id?: number;
+    /**
+     * Reservation associated with place
+     */
+    reservation?: Reservation | RegularReservation | StaffReservation;
+
 }
 
 export interface Reservation {
@@ -77,13 +86,62 @@ export interface Reservation {
      */
     approved_at: string;
     /**
-     * User which asked for reservation
+     * Reservation occasion
      */
-    reservee?: User;
+    occasion?: string;
     /**
-     * Place on which reservation was asked for
+     * Number of guest in the reservation
      */
-    place?: Place;
+    number_of_guests?: number;
+    /**
+     * Additional requirements provided by user
+     */
+    additional_requirements?: string;
+    // /**
+    //  * ID of the place reservation is for
+    //  */
+    // /**
+    //  * User which asked for reservation
+    //  */
+    // reservee?: User;
+    // /**
+    //  * Place on which reservation was asked for
+    //  */
+    // place?: Place;
+}
+
+export interface RegularReservation extends Reservation{
+    /**
+     * ID of the place reservation is for
+     */
+    place_id?: number;
+    /**
+     * Name of the place user asked for reservation
+     */
+    place_name?: string;
+    /**
+     * Address of the place user asked for reservation
+     */
+    place_address?: string;
+}
+
+export interface StaffReservation extends Reservation{
+    /**
+     * ID of the user which asked for reservation
+     */
+    user_id: number;
+    /**
+     * First name of the user which asked for reservation
+     */
+    user_first_name: string;
+    /**
+     * Last name of the user which asked for reservation
+     */
+    user_last_name: string;
+    /**
+     * E-mail address of the user which asked for reservation
+     */
+    user_email: string;
 }
 
 export enum Role {

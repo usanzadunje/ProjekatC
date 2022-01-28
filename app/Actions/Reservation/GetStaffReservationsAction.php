@@ -11,6 +11,7 @@ class GetStaffReservationsAction
     public function handle(User $user, string $filter = ''): Paginator {
         return Reservation::select([
             'reservations.id', 'reservations.reservation_date', 'reservations.approved_at', 'reservations.created_at', 'reservations.user_id',
+            'reservations.occasion','reservations.number_of_guests','reservations.additional_requirements',
             'users.first_name as user_first_name', 'users.last_name as user_last_name', 'users.email as user_email',
         ])
             ->join('users', 'users.id', '=', 'reservations.user_id')

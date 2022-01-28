@@ -29,7 +29,6 @@ export default defineComponent({
   emits: ['dismiss'],
   setup() {
     /* Component properties */
-
     /* Event handlers */
     return {
       /* Component properties */

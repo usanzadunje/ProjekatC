@@ -24,7 +24,7 @@
     <div class="absolute bottom-4 right-7">
       <AppReservationButton
           cssClass="font-light rounded-full px-4 py-1"
-          @click="$event.stopPropagation();$emit('openReservationModal')"
+          @click="$event.stopPropagation();Inertia.get(route('regular.reservation.create'))"
       />
     </div>
   </div>
@@ -51,7 +51,6 @@ export default defineComponent({
     AppReservationButton,
     Link,
   },
-  emits: ['openReservationModal'],
   props: {
     place: {
       type: Object as PropType<Place>,
@@ -80,6 +79,7 @@ export default defineComponent({
       createReservation,
 
       /* Helpers */
+      Inertia,
     };
   },
 });

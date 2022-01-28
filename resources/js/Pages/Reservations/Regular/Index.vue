@@ -18,7 +18,7 @@
       <div
           v-for="reservation in reservations.data" :key="reservation.id"
           class="px-12 pt-3 pb-6 bg-white rounded-xl h-28 cursor-pointer hover:scale-105"
-          @click=""
+          @click="Inertia.get(route('regular.reservation.create'))"
       >
         <div class="flex justify-between h-full">
           <div class="flex flex-col items-center gap-4 w-1/12">
@@ -34,13 +34,19 @@
             </span>
           </div>
           <div class="flex flex-col items-center gap-4 w-1/6">
+            <span class="font-medium text-primary-600">Guests</span>
+            <span class="font-light break-all text-center">
+              {{ reservation.number_of_guests }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center gap-4 w-1/6">
             <span class="font-medium text-primary-600">Reservation Date</span>
             <span class="font-light break-all text-center">
               {{ dayjs(reservation.reservation_date).format('DD.MM.YYYY') }}
             </span>
           </div>
           <div class="flex flex-col items-center gap-4 w-1/6">
-            <span class="font-medium text-primary-600">Requested Date</span>
+            <span class="font-medium text-primary-600">Requested At</span>
             <span class="font-light break-all text-center">
               {{ dayjs(reservation.created_at).format('DD.MM.YYYY') }}
             </span>
@@ -54,13 +60,11 @@
           <div class="flex flex-col items-center gap-4 w-1/12">
             <span class="font-medium text-primary-600">Actions</span>
             <div>
-              <Link
-                  as="button"
-                  type="button"
+              <span
                   class="text-white text-2xl bg-green-700 py-1 px-2 rounded-md hover:bg-green-600"
               >
                 <i class="fas fa-edit"></i>
-              </Link>
+              </span>
               <Link
                   as="button"
                   type="button"
@@ -105,6 +109,8 @@ export default defineComponent({
   setup() {
     /* Component properties */
     const filterQuery = ref<RequestPayload>();
+
+    /* Composables */
 
     /* Event handlers */
     const fetchReservations = (filter: string) => {
