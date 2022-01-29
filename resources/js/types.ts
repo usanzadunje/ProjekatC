@@ -100,14 +100,14 @@ export interface Reservation {
     // /**
     //  * ID of the place reservation is for
     //  */
-    // /**
-    //  * User which asked for reservation
-    //  */
-    // reservee?: User;
-    // /**
-    //  * Place on which reservation was asked for
-    //  */
-    // place?: Place;
+    /**
+     * User which asked for reservation
+     */
+    reservee?: User;
+    /**
+     * Place on which reservation was asked for
+     */
+    place?: Place;
 }
 
 export interface RegularReservation extends Reservation {

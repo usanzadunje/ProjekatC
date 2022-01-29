@@ -2,7 +2,7 @@
   <div class="flex justify-center items-center">
     <div class="w-1/2 bg-primary-paint-300 rounded-xl p-10">
       <h2 class="text-4xl font-medium text-center">
-        {{ place.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
+        {{ place?.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
       </h2>
       <form
           @submit.prevent="storeOrUpdateReservation"
@@ -43,7 +43,7 @@
             :loading="form.processing"
             class="bg-primary-600 hover:bg-primary-900 w-full rounded-full mt-12 py-3 px-6 text-white font-medium"
         >
-          {{ place.reservation ? 'Update' : 'Create' }}
+          {{ place?.reservation ? 'Update' : 'Create' }}
         </AppLoadingButton>
       </form>
     </div>
@@ -90,7 +90,7 @@ export default defineComponent({
     onMounted(() => {
       const placeInternal: Place = place.value as Place;
 
-      if(placeInternal.reservation) {
+      if(placeInternal?.reservation) {
         form.reservation_date = placeInternal.reservation.reservation_date;
         form.occasion = placeInternal.reservation.occasion as string;
         form.number_of_guests = placeInternal.reservation.number_of_guests as number;
@@ -102,7 +102,7 @@ export default defineComponent({
     const storeOrUpdateReservation = (): void => {
       const placeInternal: Place = place.value as Place;
 
-      if(placeInternal.reservation) {
+      if(placeInternal?.reservation) {
         form.patch(route('regular.reservation.update', placeInternal.reservation.id), {
           preserveState: true,
           only: ['errors', 'flash'],
