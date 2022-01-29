@@ -23,7 +23,7 @@
             :required="true"
             label="Number of guests"
             type="number"
-            v-model="form.number_of_guests"
+            v-model.number="form.number_of_guests"
             :error="form.errors.number_of_guests"
             placeholder="Number of guests..."
             class="mt-4"
@@ -82,7 +82,7 @@ export default defineComponent({
       place_id: props.place?.id,
       reservation_date: new Date().toISOString(),
       occasion: '',
-      number_of_guests: '',
+      number_of_guests: NaN,
       additional_requirements: '',
     });
 
@@ -93,17 +93,26 @@ export default defineComponent({
       if(placeInternal.reservation) {
         form.reservation_date = placeInternal.reservation.reservation_date;
         form.occasion = placeInternal.reservation.occasion as string;
-        form.number_of_guests = placeInternal.reservation?.number_of_guests?.toString() as string;
+        form.number_of_guests = placeInternal.reservation.number_of_guests as number;
         form.additional_requirements = placeInternal.reservation.additional_requirements as string;
       }
     });
 
     /* Event handlers */
     const storeOrUpdateReservation = (): void => {
-      form.post(route('regular.reservation.store'), {
-        preserveState: true,
-        only: ['errors', 'flash'],
-      });
+      const placeInternal: Place = place.value as Place;
+
+      if(placeInternal.reservation) {
+        form.patch(route('regular.reservation.update', placeInternal.reservation.id), {
+          preserveState: true,
+          only: ['errors', 'flash'],
+        });
+      }else {
+        form.post(route('regular.reservation.store'), {
+          preserveState: true,
+          only: ['errors', 'flash'],
+        });
+      }
     };
 
 

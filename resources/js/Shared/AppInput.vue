@@ -55,7 +55,7 @@ export default defineComponent({
       type: String,
     },
     modelValue: {
-      type: String,
+      type: null,
     },
   },
   setup(props) {

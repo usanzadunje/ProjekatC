@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Actions\Reservation;
+namespace App\Actions\Reservation\Regular;
 
 use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class GetRegularReservationsAction
+class GetReservationsAction
 {
     public function handle(User $user, string $filter = ''): Paginator {
         return Reservation::select([

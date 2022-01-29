@@ -44,11 +44,12 @@ class ClientController extends Controller
     }
 
     public function edit(User $user) {
-        //
     }
 
-    public function update(UpdateUserRequest $request, User $user) {
-        //
+    public function update(UpdateUserRequest $request, User $client) {
+        $client->update($request->all());
+
+        return $client;
     }
 
     public function destroy(User $client): RedirectResponse {

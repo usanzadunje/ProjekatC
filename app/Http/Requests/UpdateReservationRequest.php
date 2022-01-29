@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Reservation;
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateReservationRequest extends FormRequest
 {
@@ -11,9 +14,8 @@ class UpdateReservationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
+    public function authorize() {
+        return true;
     }
 
     /**
@@ -21,10 +23,29 @@ class UpdateReservationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            //
+            'reservation_date' => [
+                'required',
+                'date',
+                Rule::unique(Reservation::class)->ignore($this->route('reservation')),
+            ],
+            'number_of_guests' => [
+                'required',
+                'numeric',
+                'integer',
+                'max:3000',
+            ],
+            'occasion' => [
+                'required',
+                'string',
+                'max:100',
+            ],
+            'additional_requirements' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
         ];
     }
 }

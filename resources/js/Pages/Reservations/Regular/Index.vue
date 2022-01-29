@@ -61,7 +61,7 @@
             <span class="font-medium text-primary-600">Actions</span>
             <div>
               <Link
-                  :href="route('regular.reservation.edit', [reservation.placeId, reservation.id])"
+                  :href="route('regular.reservation.edit', [reservation.id, reservation.placeId])"
                   as="button"
                   type="button"
                   class="text-white text-2xl bg-green-700 py-1 px-2 rounded-md hover:bg-green-600"

@@ -25,8 +25,9 @@ Route::controller(RegularPlaceController::class)
 Route::controller(RegularReservationController::class)
     ->as('reservation.')
     ->group(function() {
-        Route::get('/place/{place}/reservation/create', 'create')->name('create');
-        Route::get('/place/{place}/reservation/{reservation}/edit', 'edit')->name('edit');
+        Route::get('/reservation/create/{place}', 'create')->name('create');
+        Route::get('/reservation/{reservation}/edit/{place}', 'edit')->name('edit');
     });
+
 Route::resource('reservation', RegularReservationController::class)
     ->except('create', 'edit');
