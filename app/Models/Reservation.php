@@ -7,6 +7,7 @@ use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -98,10 +99,15 @@ class Reservation extends Pivot
         return $this
             ->belongsToMany(
                 Offer::class, 'offer_reservation',
-                'reservation_id','offer_id',
+                'reservation_id', 'offer_id',
             )
             ->using(OfferReservation::class)
             ->as('requests')
             ->withPivot('id', 'additional_requirements');
+    }
+
+    public function requests(): HasMany {
+        return $this
+            ->hasMany(OfferReservation::class, 'reservation_id');
     }
 }

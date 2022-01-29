@@ -54,6 +54,12 @@ class StoreReservationRequest extends FormRequest
                 'string',
                 'max:1000',
             ],
+            'offers.*' => [
+                'nullable',
+                'numeric',
+                'integer',
+                Rule::exists('offers', 'id')->where('place_id', $this->request->get('place_id')),
+            ],
         ];
     }
 }

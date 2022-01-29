@@ -25,16 +25,6 @@ class StaffReservationController extends Controller
         return Inertia::render('Reservations/Staff/Index', compact('reservations'));
     }
 
-    public function create(): InertiaResponse {
-        return Inertia::render('Reservations/Staff/Create');
-    }
-
-    public function store(StoreReservationRequest $request, CreateNewReservationAction $createNewReservationAction): RedirectResponse {
-        $createNewReservationAction->handle(auth()->user(), $request->validated());
-
-        return redirect()->route('staff.reservation.index');
-    }
-
     public function show(Reservation $reservation) {
         //
     }
@@ -45,11 +35,5 @@ class StaffReservationController extends Controller
 
     public function update(UpdateReservationRequest $request, Reservation $reservation) {
         //
-    }
-
-    public function destroy(Reservation $reservation): RedirectResponse {
-        $reservation->delete();
-
-        return redirect()->back();
     }
 }

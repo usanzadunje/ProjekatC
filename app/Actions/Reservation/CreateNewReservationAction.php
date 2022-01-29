@@ -3,19 +3,20 @@
 namespace App\Actions\Reservation;
 
 use App\Models\Reservation;
-use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 
 class CreateNewReservationAction
 {
     public function handle(User $user, array $reservationData): void {
-        if($user->hasRole('regular')) {
-            $user->reservations()->attach($reservationData['place_id'], $reservationData);
-        }else {
-            $user->place->reservees()->attach($reservationData['user_id'], $reservationData);
-        }
-    }
+        $reservationData['user_id'] = $user->id;
+        $offers = null;
 
+        if(array_key_exists('offers', $reservationData)) {
+            $offers = $reservationData['offers'];
+            unset($reservationData['offers']);
+        }
+
+        $createdReservation = Reservation::create($reservationData);
+        $createdReservation->offers()->attach($offers);
+    }
 }

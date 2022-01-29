@@ -11,4 +11,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/dashboard', 'Dashboard/Staff')->name('dashboard');
 
-Route::resource('reservation', StaffReservationController::class);
+Route::resource('reservation', StaffReservationController::class)
+    ->except('create', 'store');
