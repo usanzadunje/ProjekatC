@@ -1,51 +1,54 @@
 <template>
-  <div class="flex justify-center items-center">
-    <div class="w-1/2 rounded-xl p-10">
-      <h2 class="text-4xl font-medium text-center">
-        {{ place?.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
-      </h2>
-      <form
-          @submit.prevent="storeOrUpdateReservation"
-          class="px-16 mt-16"
-      >
-        <AppInput
-            :required="true"
-            label="Occasion"
-            type="text"
-            :autofocus="true"
-            v-model="form.occasion"
-            :error="form.errors.occasion"
-            placeholder="Reservation occasion..."
-            class="mt-8"
-            @focus="form.clearErrors('occasion')"
-        />
-        <AppInput
-            :required="true"
-            label="Number of guests"
-            type="number"
-            v-model.number="form.number_of_guests"
-            :error="form.errors.number_of_guests"
-            placeholder="Number of guests..."
-            class="mt-4"
-            @focus="form.clearErrors('number_of_guests')"
-        />
-        <AppTextarea
-            label="Additional requirements"
-            type="text"
-            v-model="form.additional_requirements"
-            :error="form.errors.additional_requirements"
-            placeholder="Your custom requirements..."
-            class="mt-4"
-            :rows="10"
-            @focus="form.clearErrors('additional_requirements')"
-        />
-        <AppLoadingButton
-            :loading="form.processing"
-            class="bg-primary-600 hover:bg-primary-900 w-full rounded-full mt-12 py-3 px-6 text-white font-medium"
+  <div class="">
+    <h2 class="mt-10 text-4xl font-medium text-center">
+      {{ place?.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
+    </h2>
+    <div class="flex mt-16">
+      <div class="w-1/2 px-16">
+        <form
+            @submit.prevent="storeOrUpdateReservation"
         >
-          {{ place?.reservation ? 'Update' : 'Create' }}
-        </AppLoadingButton>
-      </form>
+          <AppInput
+              :required="true"
+              label="Occasion"
+              type="text"
+              :autofocus="true"
+              v-model="form.occasion"
+              :error="form.errors.occasion"
+              placeholder="Reservation occasion..."
+              @focus="form.clearErrors('occasion')"
+          />
+          <AppInput
+              :required="true"
+              label="Number of guests"
+              type="number"
+              v-model.number="form.number_of_guests"
+              :error="form.errors.number_of_guests"
+              placeholder="Number of guests..."
+              class="mt-4"
+              @focus="form.clearErrors('number_of_guests')"
+          />
+          <AppTextarea
+              label="Additional requirements"
+              type="text"
+              v-model="form.additional_requirements"
+              :error="form.errors.additional_requirements"
+              placeholder="Your custom requirements..."
+              class="mt-4"
+              :rows="10"
+              @focus="form.clearErrors('additional_requirements')"
+          />
+          <AppLoadingButton
+              :loading="form.processing"
+              class="bg-primary-600 hover:bg-primary-900 w-full rounded-full mt-12 py-3 px-6 text-white font-medium"
+          >
+            {{ place?.reservation ? 'Update' : 'Create' }}
+          </AppLoadingButton>
+        </form>
+      </div>
+      <div class="w-1/2 px-16 bg-red-300">
+        sad
+      </div>
     </div>
   </div>
 </template>

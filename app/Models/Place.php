@@ -53,6 +53,12 @@ class Place extends Model
         'address',
     ];
 
+    protected $hidden = [
+        'user_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function owner(): BelongsTo {
         return $this->belongsTo(User::class, 'user_id', 'id', 'users');
     }
@@ -67,6 +73,7 @@ class Place extends Model
     }
 
     public function offers(): HasMany {
-        return $this->hasMany(Offer::class);
+        return $this->hasMany(Offer::class)
+            ->select('id', 'name', 'place_id');
     }
 }

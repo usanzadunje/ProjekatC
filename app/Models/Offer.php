@@ -33,6 +33,12 @@ class Offer extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'place_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function place(): BelongsTo {
         return $this->belongsTo(Place::class);
     }

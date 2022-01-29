@@ -28,7 +28,10 @@ class RegularReservationController extends Controller
     }
 
     public function create(Place $place): InertiaResponse {
-        return Inertia::render('Reservations/Regular/CreateEdit', ['place' => $place->only('id', 'name')]);
+        return Inertia::render('Reservations/Regular/CreateEdit', [
+            'place' => $place->load('offers')
+                ->only('id', 'name', 'offers'),
+        ]);
     }
 
     public function store(StoreReservationRequest $request, CreateNewReservationAction $createNewReservationAction): RedirectResponse {
@@ -42,7 +45,9 @@ class RegularReservationController extends Controller
     }
 
     public function edit(Reservation $reservation, Place $place): InertiaResponse {
-        $place->reservation = $reservation->only('id', 'occasion', 'number_of_guests', 'reservation_date', 'additional_requirements');
+        $place->reservation = $reservation
+            ->load('offers')
+            ->only('id', 'occasion', 'number_of_guests', 'reservation_date', 'additional_requirements', 'offers');
 
         return Inertia::render('Reservations/Regular/CreateEdit', ['place' => $place->only('id', 'name', 'reservation')]);
     }
