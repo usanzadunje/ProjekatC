@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Reservation\CreateNewReservationAction;
 use App\Actions\Reservation\GetStaffReservationsAction;
-use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
-use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 

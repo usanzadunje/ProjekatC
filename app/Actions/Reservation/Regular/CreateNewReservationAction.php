@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Reservation;
+namespace App\Actions\Reservation\Regular;
 
 use App\Models\Reservation;
 use App\Models\User;

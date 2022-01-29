@@ -30,6 +30,9 @@
       <div>
         Address: {{ reservation.place.address }}
       </div>
+      <div>
+        Offers: {{ reservation.offers }}
+      </div>
     </div>
   </div>
 </template>

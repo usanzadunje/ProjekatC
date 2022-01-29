@@ -16,3 +16,7 @@ export function addOrRemoveFromArray(arr: any[], value: any) {
         arr.push(value);
     }
 }
+
+export function pluckFromArray(arr: any[], key: any) {
+    return arr.map((el) => el[key]);
+}

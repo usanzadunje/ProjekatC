@@ -38,7 +38,7 @@ class ReservationPolicy
      * @return bool
      */
     public function create(User $user): bool {
-        return $user->hasAnyRole(['staff', 'regular']);
+        return $user->hasRole('regular');
     }
 
     /**

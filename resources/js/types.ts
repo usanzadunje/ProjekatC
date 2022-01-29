@@ -100,9 +100,10 @@ export interface Reservation {
      * Additional requirements provided by user
      */
     additional_requirements?: string;
-    // /**
-    //  * ID of the place reservation is for
-    //  */
+    /**
+     * Offers chosen for this reservation
+     */
+    offers?: Offer[];
     /**
      * User which asked for reservation
      */

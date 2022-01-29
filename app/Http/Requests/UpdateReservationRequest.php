@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Reservation;
-use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -45,6 +44,12 @@ class UpdateReservationRequest extends FormRequest
                 'nullable',
                 'string',
                 'max:1000',
+            ],
+            'offers.*' => [
+                'nullable',
+                'numeric',
+                'integer',
+                Rule::exists('offers', 'id')->where('place_id', $this->request->get('place_id')),
             ],
         ];
     }

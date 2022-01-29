@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Reservation\CreateNewReservationAction;
+use App\Actions\Reservation\Regular\CreateNewReservationAction;
 use App\Actions\Reservation\Regular\GetReservationsAction;
+use App\Actions\Reservation\Regular\UpdateReservationAction;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\OfferReservation;
 use App\Models\Place;
 use App\Models\Reservation;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +31,8 @@ class RegularReservationController extends Controller
 
     public function create(Place $place): InertiaResponse {
         return Inertia::render('Reservations/Regular/CreateEdit', [
-            'place' => $place->load('offers')
+            'place' => $place
+                ->load('offers')
                 ->only('id', 'name', 'offers'),
         ]);
     }
@@ -41,7 +44,11 @@ class RegularReservationController extends Controller
     }
 
     public function show(Reservation $reservation): InertiaResponse {
-        return Inertia::render('Reservations/Regular/Show', ['reservation' => $reservation->load('place')]);
+        return Inertia::render('Reservations/Regular/Show', [
+            'reservation' => $reservation
+                ->load('place')
+                ->load('offers'),
+        ]);
     }
 
     public function edit(Reservation $reservation, Place $place): InertiaResponse {
@@ -49,11 +56,15 @@ class RegularReservationController extends Controller
             ->load('offers')
             ->only('id', 'occasion', 'number_of_guests', 'reservation_date', 'additional_requirements', 'offers');
 
-        return Inertia::render('Reservations/Regular/CreateEdit', ['place' => $place->only('id', 'name', 'reservation')]);
+        return Inertia::render('Reservations/Regular/CreateEdit', [
+            'place' => $place
+                ->load('offers')
+                ->only('id', 'name', 'reservation', 'offers'),
+        ]);
     }
 
-    public function update(UpdateReservationRequest $request, Reservation $reservation): RedirectResponse {
-        $reservation->update($request->validated());
+    public function update(UpdateReservationRequest $request, Reservation $reservation, UpdateReservationAction $updateReservationAction) {
+        $updateReservationAction->handle($reservation, $request->validated());
 
         return redirect()->route('regular.reservation.show', $reservation->id);
     }

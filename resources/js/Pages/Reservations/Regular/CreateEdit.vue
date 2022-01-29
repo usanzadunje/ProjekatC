@@ -82,9 +82,9 @@ import AppInput         from '@/Shared/AppInput.vue';
 import AppTextarea      from '@/Shared/AppTextarea.vue';
 import AppLoadingButton from '@/Shared/AppLoadingButton.vue';
 
-import { addOrRemoveFromArray } from '@/utils/helpers';
+import { addOrRemoveFromArray, pluckFromArray } from '@/utils/helpers';
 
-import { Place } from '@/types';
+import { Place, Offer } from '@/types';
 
 export default defineComponent({
   name: 'Reservations/Regular/CreateEdit',
@@ -109,7 +109,7 @@ export default defineComponent({
       occasion: '',
       number_of_guests: NaN,
       additional_requirements: '',
-      offers: [],
+      offers: [] as number[],
     });
 
     /* Lifecycle hooks */
@@ -121,6 +121,7 @@ export default defineComponent({
         form.occasion = placeInternal.reservation.occasion as string;
         form.number_of_guests = placeInternal.reservation.number_of_guests as number;
         form.additional_requirements = placeInternal.reservation.additional_requirements as string;
+        form.offers = pluckFromArray(placeInternal.reservation.offers as Offer[], 'id');
       }
     });
 
