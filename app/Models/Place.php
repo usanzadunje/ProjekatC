@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Place whereUserId($value)
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|Place filter(string $filter, array $columns)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Offer[] $offers
+ * @property-read int|null $offers_count
  */
 class Place extends Model
 {

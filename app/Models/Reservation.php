@@ -34,6 +34,15 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUserId($value)
  * @mixin \Eloquent
+ * @property int $number_of_guests
+ * @property string|null $occasion
+ * @property string|null $additional_requirements
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Offer[] $offers
+ * @property-read int|null $offers_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation filter(string $filter, array|string $columns)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereAdditionalRequirements($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereNumberOfGuests($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereOccasion($value)
  */
 class Reservation extends Pivot
 {

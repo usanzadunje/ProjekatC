@@ -6,6 +6,29 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
+/**
+ * App\Models\OfferReservation
+ *
+ * @property int $id
+ * @property int $offer_id
+ * @property int $reservation_id
+ * @property string|null $additional_requirements
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Offer $offer
+ * @property-read \App\Models\Reservation $reservation
+ * @method static \Database\Factories\OfferReservationFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation whereAdditionalRequirements($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation whereOfferId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation whereReservationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OfferReservation whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class OfferReservation extends Pivot
 {
     use HasFactory;
