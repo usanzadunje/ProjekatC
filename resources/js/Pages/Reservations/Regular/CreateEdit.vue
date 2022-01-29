@@ -47,10 +47,21 @@
         </form>
       </div>
       <div class="w-1/2 px-16">
-        <div class="h-1/2 bg-red-300">
-          RESERVATION DATE PICKER
+        <div class="">
+          {{ form.reservation_date }}
+          <Datepicker
+              ref="date"
+              v-model="form.reservation_date" autoApply
+              :enableTimePicker="false"
+          >
+            <template #trigger>
+              <div class="bg-white rounded-md px-8 py-4 text-xl">
+                {{ dayjs(form.reservation_date).format('dddd DD MMMM YYYY') }}
+              </div>
+            </template>
+          </Datepicker>
         </div>
-        <div class="h-1/2">
+        <div class="mt-8">
           <h2 class="text-3xl text-center">Offers</h2>
           <div class="flex justify-center items-center gap-4 flex-wrap mt-10">
             <div
@@ -76,11 +87,14 @@
 import { defineComponent, onMounted, PropType, toRefs } from 'vue';
 import { useForm }                                      from '@inertiajs/inertia-vue3';
 import route                                            from 'ziggy';
+import dayjs                                            from 'dayjs';
 
 import Layout           from '@/Shared/Layout.vue';
 import AppInput         from '@/Shared/AppInput.vue';
 import AppTextarea      from '@/Shared/AppTextarea.vue';
 import AppLoadingButton from '@/Shared/AppLoadingButton.vue';
+import Datepicker       from 'vue3-date-time-picker';
+import 'vue3-date-time-picker/dist/main.css';
 
 import { addOrRemoveFromArray, pluckFromArray } from '@/utils/helpers';
 
@@ -92,6 +106,7 @@ export default defineComponent({
     AppInput,
     AppTextarea,
     AppLoadingButton,
+    Datepicker,
   },
   layout: Layout,
   props: {
@@ -149,8 +164,18 @@ export default defineComponent({
       /* Event handlers */
       storeOrUpdateReservation,
       addOrRemoveFromArray,
+
+      /* Helpers */
+      dayjs,
     };
   },
 });
 
 </script>
+<style>
+.dp__theme_light {
+  --dp-hover-color: #DCDEFE;
+  --dp-primary-color: #5139EF;
+  --dp-border-color: none;
+}
+</style>
