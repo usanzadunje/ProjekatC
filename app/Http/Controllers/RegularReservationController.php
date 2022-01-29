@@ -37,7 +37,7 @@ class RegularReservationController extends Controller
         return redirect()->route('regular.reservation.index');
     }
 
-    public function show(Reservation $reservation) {
+    public function show(Reservation $reservation): InertiaResponse {
         return Inertia::render('Reservations/Regular/Show', ['reservation' => $reservation->load('place')]);
     }
 
@@ -48,7 +48,6 @@ class RegularReservationController extends Controller
     }
 
     public function update(UpdateReservationRequest $request, Reservation $reservation): RedirectResponse {
-
         $reservation->update($request->validated());
 
         return redirect()->route('regular.reservation.show', $reservation->id);

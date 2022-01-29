@@ -28,6 +28,5 @@ Route::controller(RegularReservationController::class)
         Route::get('/reservation/create/{place}', 'create')->name('create');
         Route::get('/reservation/{reservation}/edit/{place}', 'edit')->name('edit');
     });
-
 Route::resource('reservation', RegularReservationController::class)
     ->except('create', 'edit');

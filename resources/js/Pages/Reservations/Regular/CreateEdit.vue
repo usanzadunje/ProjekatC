@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center">
-    <div class="w-1/2 bg-primary-paint-300 rounded-xl p-10">
+    <div class="w-1/2 rounded-xl p-10">
       <h2 class="text-4xl font-medium text-center">
         {{ place?.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
       </h2>
