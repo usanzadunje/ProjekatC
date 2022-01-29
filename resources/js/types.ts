@@ -65,7 +65,10 @@ export interface Place {
      * Reservation associated with place
      */
     reservation?: Reservation | RegularReservation | StaffReservation;
-
+    /**
+     * Services offered by the place
+     */
+    offers?: Offer[];
 }
 
 export interface Reservation {
@@ -202,4 +205,15 @@ export interface Pagination {
      * Url to previous page of paginated results
      */
     prev_page_url: string;
+}
+
+export interface Offer {
+    /**
+     * Offer ID
+     */
+    id?: number;
+    /**
+     * Name of the service provided through offer. (by place)
+     */
+    name: string;
 }

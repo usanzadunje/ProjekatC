@@ -4,7 +4,7 @@
       {{ place?.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
     </h2>
     <div class="flex mt-16">
-      <div class="w-1/2 px-16">
+      <div class="w-1/2 px-16 mt-2">
         <form
             @submit.prevent="storeOrUpdateReservation"
         >
@@ -46,8 +46,27 @@
           </AppLoadingButton>
         </form>
       </div>
-      <div class="w-1/2 px-16 bg-red-300">
-        sad
+      <div class="w-1/2 px-16">
+        <div class="h-1/2 bg-red-300">
+          RESERVATION DATE PICKER
+        </div>
+        <div class="h-1/2">
+          <h2 class="text-3xl text-center">Offers</h2>
+          <div class="flex justify-center items-center gap-4 flex-wrap mt-10">
+            <div
+                v-for="offer in place.offers"
+                :key="offer.id"
+                class="py-2 px-8 rounded-full cursor-pointer"
+                :class="[form.offers.includes(offer.id) ?
+              'opacity-100 bg-primary-600 text-white' :
+              'bg-primary-100 hover:opacity-100 hover:bg-primary-600 hover:text-white'
+              ]"
+                @click="addOrRemoveFromArray(form.offers, offer.id)"
+            >
+              {{ offer.name }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -62,7 +81,10 @@ import Layout           from '@/Shared/Layout.vue';
 import AppInput         from '@/Shared/AppInput.vue';
 import AppTextarea      from '@/Shared/AppTextarea.vue';
 import AppLoadingButton from '@/Shared/AppLoadingButton.vue';
-import { Place }        from '@/types';
+
+import { addOrRemoveFromArray } from '@/utils/helpers';
+
+import { Place } from '@/types';
 
 export default defineComponent({
   name: 'Reservations/Regular/CreateEdit',
@@ -87,6 +109,7 @@ export default defineComponent({
       occasion: '',
       number_of_guests: NaN,
       additional_requirements: '',
+      offers: [],
     });
 
     /* Lifecycle hooks */
@@ -118,13 +141,13 @@ export default defineComponent({
       }
     };
 
-
     return {
       /* Component properties */
       form,
 
       /* Event handlers */
       storeOrUpdateReservation,
+      addOrRemoveFromArray,
     };
   },
 });
