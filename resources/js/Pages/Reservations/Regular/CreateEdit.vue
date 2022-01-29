@@ -1,10 +1,10 @@
 <template>
-  <div class="">
+  <div class="pb-10">
     <h2 class="mt-10 text-4xl font-medium text-center">
       {{ place?.reservation ? `Edit reservation at ${place.name}` : `Create new reservation at ${place.name}` }}
     </h2>
     <div class="flex mt-16">
-      <div class="w-1/2 px-16 mt-2">
+      <div class="w-1/2 px-28 mt-2">
         <form
             @submit.prevent="storeOrUpdateReservation"
         >
@@ -46,22 +46,30 @@
           </AppLoadingButton>
         </form>
       </div>
-      <div class="w-1/2 px-16">
-        <div class="">
-          {{ form.reservation_date }}
-          <Datepicker
-              ref="date"
-              v-model="form.reservation_date" autoApply
-              :enableTimePicker="false"
-          >
-            <template #trigger>
-              <div class="bg-white rounded-md px-8 py-4 text-xl">
-                {{ dayjs(form.reservation_date).format('dddd DD MMMM YYYY') }}
-              </div>
-            </template>
-          </Datepicker>
+      <div class="w-1/2 px-16 flex flex-col justify-center">
+        <div class="flex flex-col justify-center items-center">
+          <p class="text-2xl text-center">
+            Date of your reservation
+          </p>
+          <div class="flex items-center gap-3 mt-8">
+            <span class="text-xl">Pick a date</span>
+            <Datepicker
+                ref="date"
+                v-model="form.reservation_date" autoApply
+                :enableTimePicker="false"
+                :autoPosition="true"
+            >
+              <template #trigger>
+                <div
+                    class="bg-white rounded-md px-8 py-3 text-xl cursor-pointer w-max hover:text-primary-600"
+                >
+                  {{ dayjs(form.reservation_date).format('dddd DD. MMMM YYYY') }}
+                </div>
+              </template>
+            </Datepicker>
+          </div>
         </div>
-        <div class="mt-8">
+        <div class="mt-32">
           <h2 class="text-3xl text-center">Offers</h2>
           <div class="flex justify-center items-center gap-4 flex-wrap mt-10">
             <div

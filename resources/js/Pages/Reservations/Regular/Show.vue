@@ -11,27 +11,47 @@
         {{ reservation.approved_at ? 'Approved' : 'Not approved' }}
       </div>
     </div>
-    <div class="mt-12">
-      <div>
-        Occasion: {{ reservation.occasion }}
+    <div class="mt-12 flex gap-4 mt-12">
+      <div class="w-1/2 flex flex-col items-center">
+        <PreviewInput
+            label="Occasion"
+            icon="fas fa-edit"
+            :content="reservation.occasion"
+        />
+        <PreviewInput
+            label="Reservation date"
+            icon="fas fa-edit"
+            :content="dayjs(reservation.reservation_date).format('DD.MM.YYYY')"
+        />
+        <PreviewInput
+            label="Requested at"
+            icon="fas fa-edit"
+            :content="dayjs(reservation.created_at).format('DD.MM.YYYY')"
+        />
       </div>
-      <div>
-        Reservation date: {{ dayjs(reservation.reservation_date).format('DD.MM.YYYY') }}
-      </div>
-      <div>
-        Guest number: {{ reservation.number_of_guests }}
-      </div>
-      <div>
-        Requested at: {{ dayjs(reservation.created_at).format('DD.MM.YYYY') }}
-      </div>
-      <div>
-        Your requirements: {{ reservation.additional_requirements }}
-      </div>
-      <div>
-        Address: {{ reservation.place.address }}
-      </div>
-      <div>
-        Offers: {{ reservation.offers }}
+      <div class="w-1/2 flex flex-col items-center">
+        <PreviewInput
+            label="Guest number"
+            icon="fas fa-edit"
+            :content="reservation.number_of_guests"
+        />
+        <PreviewInput
+            label="Your additional requirements"
+            icon="fas fa-edit"
+            :content="reservation.additional_requirements"
+        />
+        <PreviewInput
+            label="Address"
+            icon="fas fa-edit"
+            :content="reservation.place.address"
+        />
+        <div class="text-2xl">
+          <p class="font-medium text-primary-600">Offers: </p>
+          <div v-for="offer in reservation.offers" :key="offer.id">
+            {{ offer.name }}
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -40,17 +60,18 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 
-import Layout from '@/Shared/Layout.vue';
+import Layout       from '@/Shared/Layout.vue';
+import PreviewInput from '@/Shared/PreviewInput.vue';
 
 import dayjs from 'dayjs';
 
 import { Reservation } from '@/types';
 
-
 export default defineComponent({
   name: 'Reservations/Regular/Show',
   components: {
     Layout,
+    PreviewInput,
   },
   layout: Layout,
   props: {
